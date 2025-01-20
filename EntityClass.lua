@@ -1,4 +1,4 @@
----v1.0.0
+---v1.0.1
 
 ---如果为空则返回v（默认值），不为空返回本身的函数
 ---@param arg any
@@ -217,8 +217,15 @@ function EntityComponentObj(comp_id)
 	---属性
 	setmetatable(compobj.attr, {
 		__newindex = function(t, k, v)
-			rawset(t, k, nil)
-			compobj:SetValue(k, v)
+            rawset(t, k, nil)
+			if type(v) == "table" and (v.x ~= nil or v.y ~= nil) then
+                local src_x, src_y = compobj:GetValue(k)
+                src_x = v.x or src_x
+                src_y = v.y or src_y
+                compobj:SetValue(k, src_x, src_y)
+            else
+				compobj:SetValue(k, v)
+			end
 		end,
 		__index = function(t, k)
             local list = { compobj:GetValue(k) }
