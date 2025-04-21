@@ -701,7 +701,7 @@ function EntityObj(entity_id)
 	---@param table_of_component_values table<string, any>? nil
 	---@return NoitaEntity self
 	function Entity:AddComp(type_name, table_of_component_values)
-		EntityAddComponent2(self.entity_id, type_name, table_of_component_values)
+		EntityAddComponent2(self.entity_id, type_name, table_of_component_values or {})
 		return self
 	end
 
