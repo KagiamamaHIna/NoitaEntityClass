@@ -1,4 +1,4 @@
----v1.0.4!
+---v1.0.5
 
 ---如果为空则返回v（默认值），不为空返回本身的函数
 ---@param arg any
@@ -630,6 +630,16 @@ function EntityObj(entity_id)
 			EntityAddChild(self.entity_id, child.entity_id)
 		end
 		return self
+	end
+
+    ---新建子实体
+	---@param name string?
+	---@return NoitaEntity child
+	function Entity:NewChild(name)
+        name = Default(name, "")
+		local returnChild = EntityObjCreateNew(name)
+		Entity:AddChild(returnChild)
+		return returnChild
 	end
 
 	---获取所有子实体，或者根据tag筛选
