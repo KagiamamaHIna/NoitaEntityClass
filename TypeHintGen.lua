@@ -102,6 +102,14 @@ for _,v in ipairs(CompList) do
 end
 file:write("\n")
 
+file:write("---@class NewCompObj\n")
+---生成组件索引转新建组件的注解
+for _,v in ipairs(CompList) do
+    local str = string.format("---@field %s fun(t: New%s): NoitaEntity\n", v, v)
+	file:write(str)
+end
+file:write("\n")
+
 ---生成各个组件的字段
 for _,v in ipairs(CompList) do
 	local str = string.format([[---@class %sClass
@@ -118,6 +126,16 @@ for _,v in ipairs(CompList) do
             desc = desc .. "<br>---<br>" .. field.desc
         end
         local fieldstr = string.format("---@field %s %s %s\n", field.fieldname, field.type, desc)
+        file:write(fieldstr)
+    end
+	file:write("\n")
+    file:write(string.format("---@class New%s\n", v))
+    for _, field in ipairs(comps[v] or {}) do
+        local desc = field.field
+        if field.desc then
+            desc = desc .. "<br>---<br>" .. field.desc
+        end
+        local fieldstr = string.format("---@field %s %s? %s\n", field.fieldname, field.type, desc)
         file:write(fieldstr)
     end
 	file:write("\n")
