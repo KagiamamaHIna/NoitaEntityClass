@@ -1,4 +1,4 @@
----v1.0.5
+---v1.0.6
 
 ---如果为空则返回v（默认值），不为空返回本身的函数
 ---@param arg any
@@ -741,7 +741,7 @@ function EntityObj(entity_id)
 	---@param tag string? tag = ""
 	---@param including_disabled boolean? including_disabled = false
 	---@return integer|nil
-	function Entity:GetFristCompID(type_name, tag, including_disabled)
+	function Entity:GetFirstCompID(type_name, tag, including_disabled)
 		tag = Default(tag, "")
 		including_disabled = Default(including_disabled, false)
 		if including_disabled then
@@ -794,7 +794,7 @@ function EntityObj(entity_id)
 	---@param including_disabled boolean? including_disabled = false
 	---@return EntityComponent|nil
 	function Entity:GetFirstComp(type_name, tag, including_disabled)
-		local comp_id = Entity:GetFristCompID(type_name, tag, including_disabled)
+		local comp_id = Entity:GetFirstCompID(type_name, tag, including_disabled)
 		if comp_id == nil then
 			return
 		end
