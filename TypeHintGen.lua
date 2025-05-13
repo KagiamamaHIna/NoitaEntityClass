@@ -35,6 +35,33 @@ local comps = {
 
 }
 
+local SpaceByte = string.byte(' ')
+
+local function GetTextOffset(str)
+    local DefSize = 92
+    if string.byte(str, DefSize, DefSize) ~= SpaceByte then
+        return 0
+    else
+        for i = DefSize + 1, #str do
+            if string.byte(str, i, i) ~= SpaceByte then
+                return i - DefSize - 1
+            end
+        end
+        return 0
+    end
+end
+
+---移除前后空格，换行
+---@param s string
+---@return string
+local function strip(s)
+	if s == nil then
+		return ''
+	end
+	local result = s:gsub("^%s+", ""):gsub("%s+$", ""):gsub("%c", "")
+	return result
+end
+
 local function GetSplitSpaceText(t)
 	local result = {}
 	for word in string.gmatch(t, "%S+") do
@@ -58,35 +85,39 @@ for v in io.lines("component_documentation.txt") do
 		goto continue
 	end
 	local list = GetSplitSpaceText(v)
-	if #list < 2 then--如果分割出来的不够多，那么应该是组件名
+    if #list < 2 then --如果分割出来的不够多，那么应该是组件名
         CurrentComp = v
-		CompList[#CompList+1] = v
-		goto continue
-	end
-
+        CompList[#CompList + 1] = v
+        goto continue
+    end
 	--开始字段加载
     if comps[CurrentComp] == nil then
         comps[CurrentComp] = {}
     end
-    
-	if string.byte(list[2], 1, 1) == string.byte("-") or tonumber(list[2]) then --简单的字段名称合法性检测，不合法下一个
-        goto continue
-    end
 
-    local fieldtype = CppTypeToLuaType[list[1]] or "unsupported"
+	-- -- if string.byte(list[2], 1, 1) == string.byte("-") or tonumber(list[2]) then --简单的字段名称合法性检测，不合法下一个
+    -- --     goto continue
+    -- -- end
+    local TypeSize = 28 + GetTextOffset(v)
+    local typeStr = strip(string.sub(v, 1 , TypeSize))
+    local NextStr = string.sub(v, TypeSize + 1)
+    local feildStr = GetSplitSpaceText(NextStr)[1]
+
+    local fieldtype = CppTypeToLuaType[typeStr] or "unsupported"
     local desc = string.match(v, "%b\"\"")
-	if desc then
+    if desc then
         desc = string.gsub(desc, '"', "")
-		if desc == "" then
-			desc = nil
-		end
-	end
+        if desc == "" then
+            desc = nil
+        end
+    end
 	--字段插入
     table.insert(comps[CurrentComp], {
         type = fieldtype,
-        fieldname = list[2],
+        fieldname = feildStr,
 		field = CurrentField,
-		desc = desc
+        desc = desc,
+        cpptype = typeStr
 	})
 	::continue::
 end
@@ -122,6 +153,7 @@ for _,v in ipairs(CompList) do
 	file:write("\n")
     for _, field in ipairs(comps[v] or {}) do
         local desc = field.field
+        desc = desc .. "<br>C++Type: " .. field.cpptype
         if field.desc then
             desc = desc .. "<br>---<br>" .. field.desc
         end
@@ -132,6 +164,7 @@ for _,v in ipairs(CompList) do
     file:write(string.format("---@class New%s\n", v))
     for _, field in ipairs(comps[v] or {}) do
         local desc = field.field
+        desc = desc .. "<br>C++Type: " .. field.cpptype
         if field.desc then
             desc = desc .. "<br>---<br>" .. field.desc
         end
