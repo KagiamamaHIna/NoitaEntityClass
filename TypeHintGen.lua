@@ -147,8 +147,9 @@ for _,v in ipairs(CompList) do
 ---@field comp_id integer
 ---@field enable boolean
 ---@field attr %s
+---@field set_attrs New%s
 
----@class %s]], v, v, v)
+---@class %s]], v, v, v, v)
     file:write(str)
 	file:write("\n")
     for _, field in ipairs(comps[v] or {}) do

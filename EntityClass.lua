@@ -1,4 +1,4 @@
----v1.0.7
+---v1.0.8
 
 ---如果为空则返回v（默认值），不为空返回本身的函数
 ---@param arg any
@@ -51,7 +51,9 @@ function EntityComponentObj(comp_id)
 		comp_id = comp_id,
 		---@type boolean
 		enable = nil,
-		attr = {}
+        attr = {},
+		---@type table
+		set_attrs = nil
 	}
 
 	---设置组件的值
@@ -65,7 +67,7 @@ function EntityComponentObj(comp_id)
 
 	---获取组件的值
 	---@param field_name string
-	---@return any?
+	---@return any
 	function compobj:GetValue(field_name)
 		return ComponentGetValue2(self.comp_id, field_name)
 	end
@@ -241,12 +243,26 @@ function EntityComponentObj(comp_id)
 		__newindex = function(t, k, v)
 			if k == "enable" then
 				rawset(t, k, nil)
-				compobj:SetEnable(v)
+                compobj:SetEnable(v)
+            elseif k == "set_attrs" then
+                rawset(t, k, nil)
+                for tk, tv in pairs(v) do
+					if type(tv) == "table" and (tv.x ~= nil or tv.y ~= nil) then
+						local src_x, src_y = compobj:GetValue(k)
+                		src_x = tv.x or src_x
+                        src_y = tv.y or src_y
+						compobj:SetValue(k, src_x, src_y)
+                    else
+						compobj:SetValue(tk, tv)
+					end
+				end
 			end
 		end,
 		__index = function(t, k)
 			if k == "enable" then
 				return compobj:GetEnable()
+			elseif k == "set_attrs" then
+				return compobj.attr
 			end
         end,
 		__eq = function (t1, t2)
@@ -347,8 +363,24 @@ function EntityObj(entity_id)
 			print_error("EntityObjError:New Component attributes cannot be overridden")
 		end,
 		__index = function(t, k)
-			return function (inputs)
-				return Entity:AddComp(k, inputs)
+            return function(inputs)
+                local Vec2s = {}
+				local NewInputs = {}
+				for ik,iv in pairs(inputs) do
+					if type(iv) == "table" and (iv.x ~= nil or iv.y ~= nil) then--分类出vec2
+                        Vec2s[ik] = iv
+                    else
+						NewInputs[ik] = iv
+					end
+				end
+                local NewComp = EntityAddComponent2(Entity.entity_id, k, NewInputs)
+                for veck, vecv in pairs(Vec2s) do--赋值！
+                    local src_x, src_y = ComponentGetValue2(NewComp, veck)
+                    src_x = vecv.x or src_x
+                    src_y = vecv.y or src_y
+                    ComponentSetValue2(NewComp, veck, src_x, src_y)
+                end
+				return Entity
 			end
 		end
 	})
