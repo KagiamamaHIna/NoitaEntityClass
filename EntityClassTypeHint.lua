@@ -332,9 +332,7 @@
 ---@field WormComponent fun(t: NewWormComponent): NoitaEntity
 ---@field WormPlayerComponent fun(t: NewWormPlayerComponent): NoitaEntity
 
----@class AIAttackComponentClass
----@field comp_id integer
----@field enable boolean
+---@class AIAttackComponentClass : EntityComponent
 ---@field attr AIAttackComponent
 ---@field set_attrs NewAIAttackComponent
 
@@ -392,9 +390,7 @@
 ---@field mRangedAttackCurrentAimAngle number? Privates<br>C++Type: float<br>---<br>which direction does our gun currently point at, physically saying?
 ---@field mNextFrameUsable integer? Privates<br>C++Type: int
 
----@class AIComponentClass
----@field comp_id integer
----@field enable boolean
+---@class AIComponentClass : EntityComponent
 ---@field attr AIComponent
 ---@field set_attrs NewAIComponent
 
@@ -406,9 +402,7 @@
 ---@field TEMP_TEMP_TEMP number? Members<br>C++Type: float
 ---@field data unsupported? Privates<br>C++Type: AIData*
 
----@class AbilityComponentClass
----@field comp_id integer
----@field enable boolean
+---@class AbilityComponentClass : EntityComponent
 ---@field attr AbilityComponent
 ---@field set_attrs NewAbilityComponent
 
@@ -514,9 +508,7 @@
 ---@field mNextChargeFrame integer? Privates<br>C++Type: int
 ---@field mItemRecoil number? Privates<br>C++Type: float
 
----@class AdvancedFishAIComponentClass
----@field comp_id integer
----@field enable boolean
+---@class AdvancedFishAIComponentClass : EntityComponent
 ---@field attr AdvancedFishAIComponent
 ---@field set_attrs NewAdvancedFishAIComponent
 
@@ -554,9 +546,7 @@
 ---@field mScared number? Privates<br>C++Type: float
 ---@field mWantsToBeInFlock boolean? Privates<br>C++Type: bool
 
----@class AltarComponentClass
----@field comp_id integer
----@field enable boolean
+---@class AltarComponentClass : EntityComponent
 ---@field attr AltarComponent
 ---@field set_attrs NewAltarComponent
 
@@ -580,9 +570,7 @@
 ---@field m_recognized_entity_tags_count unsupported? Privates<br>C++Type: uint32
 ---@field m_current_entity_tags unsupported? Privates<br>C++Type: EntityTags
 
----@class AnimalAIComponentClass
----@field comp_id integer
----@field enable boolean
+---@class AnimalAIComponentClass : EntityComponent
 ---@field attr AnimalAIComponent
 ---@field set_attrs NewAnimalAIComponent
 
@@ -832,9 +820,7 @@
 ---@field mMeleeAttackDashNextFrame integer? Privates<br>C++Type: int<br>---<br>the next frame we can perform a melee attack
 ---@field mCurrentJob unsupported? Privates<br>C++Type: RtsUnitGoal<br>---<br>info about our current job. sorta legacy and could be simplified because the RTS logic is not used anywhere but doesn't have much overhead either.
 
----@class ArcComponentClass
----@field comp_id integer
----@field enable boolean
+---@class ArcComponentClass : EntityComponent
 ---@field attr ArcComponent
 ---@field set_attrs NewArcComponent
 
@@ -850,9 +836,7 @@
 ---@field material integer? Custom data types<br>C++Type: int<br>---<br>string name for the material the arc is made of
 ---@field mArcTarget integer? Privates<br>C++Type: EntityID<br>---<br>if 'mArcTarget' points to an existing entity a lighting arc will be created between this entity and 'mArcTarget'
 
----@class AreaDamageComponentClass
----@field comp_id integer
----@field enable boolean
+---@class AreaDamageComponentClass : EntityComponent
 ---@field attr AreaDamageComponent
 ---@field set_attrs NewAreaDamageComponent
 
@@ -878,9 +862,7 @@
 ---@field aabb_max field_vec2? Custom data types<br>C++Type: vec2
 ---@field damage_type unsupported? Custom data types<br>C++Type: DAMAGE_TYPES::Enum<br>---<br>the damage type
 
----@class AttachToEntityComponentClass
----@field comp_id integer
----@field enable boolean
+---@class AttachToEntityComponentClass : EntityComponent
 ---@field attr AttachToEntityComponent
 ---@field set_attrs NewAttachToEntityComponent
 
@@ -904,9 +886,7 @@
 ---@field target integer? Privates<br>C++Type: EntityID<br>---<br>EntityID of the entity we're attached to. This will fail after save/load, unfortunately
 ---@field mUpdateFrame integer? Privates<br>C++Type: int
 
----@class AudioComponentClass
----@field comp_id integer
----@field enable boolean
+---@class AudioComponentClass : EntityComponent
 ---@field attr AudioComponent
 ---@field set_attrs NewAudioComponent
 
@@ -932,9 +912,7 @@
 ---@field m_audio_physics_material integer? Privates<br>C++Type: int
 ---@field m_latest_source unsupported? Privates<br>C++Type: AudioSourceHandle
 
----@class AudioListenerComponentClass
----@field comp_id integer
----@field enable boolean
+---@class AudioListenerComponentClass : EntityComponent
 ---@field attr AudioListenerComponent
 ---@field set_attrs NewAudioListenerComponent
 
@@ -944,9 +922,7 @@
 ---@class NewAudioListenerComponent
 ---@field z number? Members<br>C++Type: float
 
----@class AudioLoopComponentClass
----@field comp_id integer
----@field enable boolean
+---@class AudioLoopComponentClass : EntityComponent
 ---@field attr AudioLoopComponent
 ---@field set_attrs NewAudioLoopComponent
 
@@ -984,9 +960,7 @@
 ---@field m_source unsupported? Privates<br>C++Type: AudioSourceHandle
 ---@field m_frame_created integer? Privates<br>C++Type: int
 
----@class BiomeTrackerComponentClass
----@field comp_id integer
----@field enable boolean
+---@class BiomeTrackerComponentClass : EntityComponent
 ---@field attr BiomeTrackerComponent
 ---@field set_attrs NewBiomeTrackerComponent
 
@@ -1000,9 +974,7 @@
 ---@field unsafe_current_biome unsupported? Privates<br>C++Type: Biome*<br>---<br>DO NOT ACCESS, since this can be in valid
 ---@field current_biome_name string? Privates<br>C++Type: std::string<br>---<br>used to track in which biome we are at
 
----@class BlackHoleComponentClass
----@field comp_id integer
----@field enable boolean
+---@class BlackHoleComponentClass : EntityComponent
 ---@field attr BlackHoleComponent
 ---@field set_attrs NewBlackHoleComponent
 
@@ -1020,9 +992,7 @@
 ---@field damage_amount number? Members<br>C++Type: float
 ---@field m_particle_attractor_id unsupported? Privates<br>C++Type: int16
 
----@class BookComponentClass
----@field comp_id integer
----@field enable boolean
+---@class BookComponentClass : EntityComponent
 ---@field attr BookComponent
 ---@field set_attrs NewBookComponent
 
@@ -1034,9 +1004,7 @@
 ---@field TEMP_TEMPY number? Members<br>C++Type: float
 ---@field TEMP_TEMP_TEMP number? Members<br>C++Type: float
 
----@class BossDragonComponentClass
----@field comp_id integer
----@field enable boolean
+---@class BossDragonComponentClass : EntityComponent
 ---@field attr BossDragonComponent
 ---@field set_attrs NewBossDragonComponent
 
@@ -1126,9 +1094,7 @@
 ---@field mPartDistance number? Privates<br>C++Type: float
 ---@field mIsInitialized boolean? Privates<br>C++Type: bool
 
----@class BossHealthBarComponentClass
----@field comp_id integer
----@field enable boolean
+---@class BossHealthBarComponentClass : EntityComponent
 ---@field attr BossHealthBarComponent
 ---@field set_attrs NewBossHealthBarComponent
 
@@ -1146,9 +1112,7 @@
 ---@field gui_max_distance_visible number? Members<br>C++Type: float
 ---@field mOldSpritesDestroyed boolean? Privates<br>C++Type: bool
 
----@class CameraBoundComponentClass
----@field comp_id integer
----@field enable boolean
+---@class CameraBoundComponentClass : EntityComponent
 ---@field attr CameraBoundComponent
 ---@field set_attrs NewCameraBoundComponent
 
@@ -1168,9 +1132,7 @@
 ---@field freeze_on_distance_kill boolean? Members<br>C++Type: bool<br>---<br>If true and the entity went too far - this entity will be stored so we can later respawn it where it was destroyed because it got too far from the camera?
 ---@field freeze_on_max_count_kill boolean? Members<br>C++Type: bool<br>---<br>If true and the entity was one too many of its kind - this entity will be stored so we can later respawn it where it was destroyed because it got too far from the camera?
 
----@class CardinalMovementComponentClass
----@field comp_id integer
----@field enable boolean
+---@class CardinalMovementComponentClass : EntityComponent
 ---@field attr CardinalMovementComponent
 ---@field set_attrs NewCardinalMovementComponent
 
@@ -1186,9 +1148,7 @@
 ---@field intercardinal_movement boolean? Members<br>C++Type: bool<br>---<br>allow intercardinal movement
 ---@field mPrevPos field_vec2? Privates<br>C++Type: vec2
 
----@class CellEaterComponentClass
----@field comp_id integer
----@field enable boolean
+---@class CellEaterComponentClass : EntityComponent
 ---@field attr CellEaterComponent
 ---@field set_attrs NewCellEaterComponent
 
@@ -1212,9 +1172,7 @@
 ---@field ignored_material integer? Custom data types<br>C++Type: int<br>---<br>String name of a material that shouldn't be eaten by the component
 ---@field materials unsupported? Custom data types<br>C++Type: VEC_OF_MATERIALS<br>---<br>is a list of accepted materials sorted
 
----@class CharacterCollisionComponentClass
----@field comp_id integer
----@field enable boolean
+---@class CharacterCollisionComponentClass : EntityComponent
 ---@field attr CharacterCollisionComponent
 ---@field set_attrs NewCharacterCollisionComponent
 
@@ -1232,9 +1190,7 @@
 ---@field stuck_in_ground_counter integer? Privates<br>C++Type: int<br>---<br>used this mostly for player to figure out if it's stuck in ground
 ---@field mCollidedHorizontally boolean? Privates<br>C++Type: bool
 
----@class CharacterDataComponentClass
----@field comp_id integer
----@field enable boolean
+---@class CharacterDataComponentClass : EntityComponent
 ---@field attr CharacterDataComponent
 ---@field set_attrs NewCharacterDataComponent
 
@@ -1328,9 +1284,7 @@
 ---@field mVelocity field_vec2? Privates<br>C++Type: vec2
 ---@field mCollidedHorizontally boolean? Privates<br>C++Type: bool<br>---<br>moved this here from CharacterCollisionComponent - since that is multithreaded and we needed a non multithreaded version
 
----@class CharacterPlatformingComponentClass
----@field comp_id integer
----@field enable boolean
+---@class CharacterPlatformingComponentClass : EntityComponent
 ---@field attr CharacterPlatformingComponent
 ---@field set_attrs NewCharacterPlatformingComponent
 
@@ -1440,9 +1394,7 @@
 ---@field mLookOverrideLastFrame integer? Privates<br>C++Type: int
 ---@field mLookOverrideDirection integer? Privates<br>C++Type: int
 
----@class CharacterStatsComponentClass
----@field comp_id integer
----@field enable boolean
+---@class CharacterStatsComponentClass : EntityComponent
 ---@field attr CharacterStatsComponent
 ---@field set_attrs NewCharacterStatsComponent
 
@@ -1452,9 +1404,7 @@
 ---@class NewCharacterStatsComponent
 ---@field stats unsupported? Privates<br>C++Type: CharacterStatsModifier
 
----@class CollisionTriggerComponentClass
----@field comp_id integer
----@field enable boolean
+---@class CollisionTriggerComponentClass : EntityComponent
 ---@field attr CollisionTriggerComponent
 ---@field set_attrs NewCollisionTriggerComponent
 
@@ -1482,9 +1432,7 @@
 ---@field skip_self_frames integer? Members<br>C++Type: int<br>---<br>skips checks against self during these frames
 ---@field mTimer integer? Privates<br>C++Type: int
 
----@class ConsumableTeleportComponentClass
----@field comp_id integer
----@field enable boolean
+---@class ConsumableTeleportComponentClass : EntityComponent
 ---@field attr ConsumableTeleportComponent
 ---@field set_attrs NewConsumableTeleportComponent
 
@@ -1508,9 +1456,7 @@
 ---@field mHasOtherEnd boolean? Members<br>C++Type: bool
 ---@field target_location field_vec2? Custom data types<br>C++Type: vec2
 
----@class ControllerGoombaAIComponentClass
----@field comp_id integer
----@field enable boolean
+---@class ControllerGoombaAIComponentClass : EntityComponent
 ---@field attr ControllerGoombaAIComponent
 ---@field set_attrs NewControllerGoombaAIComponent
 
@@ -1546,9 +1492,7 @@
 ---@field floor_detection_aabb_max_y number? Members<br>C++Type: float
 ---@field mChangingDirectionCounter integer? Privates<br>C++Type: int
 
----@class ControlsComponentClass
----@field comp_id integer
----@field enable boolean
+---@class ControlsComponentClass : EntityComponent
 ---@field attr ControlsComponent
 ---@field set_attrs NewControlsComponent
 
@@ -1728,9 +1672,7 @@
 ---@field mButtonDownDelayLineFly integer? Privates<br>C++Type: uint32_t<br>---<br>Used to delay input for some game effects
 ---@field input_latency_frames integer? Privates<br>C++Type: LensValue<int><br>---<br>Adds latency to some inputs. Used by some game effects. Max 31.
 
----@class CrawlerAnimalComponentClass
----@field comp_id integer
----@field enable boolean
+---@class CrawlerAnimalComponentClass : EntityComponent
 ---@field attr CrawlerAnimalComponent
 ---@field set_attrs NewCrawlerAnimalComponent
 
@@ -1806,9 +1748,7 @@
 ---@field mAngle number? Privates<br>C++Type: float
 ---@field mMovementStepAccumulator number? Privates<br>C++Type: float
 
----@class CutThroughWorldDoneHereComponentClass
----@field comp_id integer
----@field enable boolean
+---@class CutThroughWorldDoneHereComponentClass : EntityComponent
 ---@field attr CutThroughWorldDoneHereComponent
 ---@field set_attrs NewCutThroughWorldDoneHereComponent
 
@@ -1818,9 +1758,7 @@
 ---@class NewCutThroughWorldDoneHereComponent
 ---@field id_of_done_cut unsupported? Members<br>C++Type: uint32
 
----@class DamageModelComponentClass
----@field comp_id integer
----@field enable boolean
+---@class DamageModelComponentClass : EntityComponent
 ---@field attr DamageModelComponent
 ---@field set_attrs NewDamageModelComponent
 
@@ -2010,9 +1948,7 @@
 ---@field mFireDamageBuffered number? Privates<br>C++Type: float<br>---<br>used to optimized cases where lots of entities are taking fire damage
 ---@field mFireDamageBufferedNextDeliveryFrame integer? Privates<br>C++Type: int32
 
----@class DamageNearbyEntitiesComponentClass
----@field comp_id integer
----@field enable boolean
+---@class DamageNearbyEntitiesComponentClass : EntityComponent
 ---@field attr DamageNearbyEntitiesComponent
 ---@field set_attrs NewDamageNearbyEntitiesComponent
 
@@ -2044,9 +1980,7 @@
 ---@field mVelocity field_vec2? Privates<br>C++Type: vec2
 ---@field mNextDamageFrame integer? Privates<br>C++Type: int
 
----@class DebugFollowMouseComponentClass
----@field comp_id integer
----@field enable boolean
+---@class DebugFollowMouseComponentClass : EntityComponent
 ---@field attr DebugFollowMouseComponent
 ---@field set_attrs NewDebugFollowMouseComponent
 
@@ -2054,9 +1988,7 @@
 
 ---@class NewDebugFollowMouseComponent
 
----@class DebugLogMessagesComponentClass
----@field comp_id integer
----@field enable boolean
+---@class DebugLogMessagesComponentClass : EntityComponent
 ---@field attr DebugLogMessagesComponent
 ---@field set_attrs NewDebugLogMessagesComponent
 
@@ -2068,9 +2000,7 @@
 ---@field TEMP_TEMPY number? Members<br>C++Type: float
 ---@field TEMP_TEMP_TEMP number? Members<br>C++Type: float
 
----@class DebugSpatialVisualizerComponentClass
----@field comp_id integer
----@field enable boolean
+---@class DebugSpatialVisualizerComponentClass : EntityComponent
 ---@field attr DebugSpatialVisualizerComponent
 ---@field set_attrs NewDebugSpatialVisualizerComponent
 
@@ -2088,9 +2018,7 @@
 ---@field max_y number? Members<br>C++Type: float
 ---@field color integer? Members<br>C++Type: unsigned int
 
----@class DieIfSpeedBelowComponentClass
----@field comp_id integer
----@field enable boolean
+---@class DieIfSpeedBelowComponentClass : EntityComponent
 ---@field attr DieIfSpeedBelowComponent
 ---@field set_attrs NewDieIfSpeedBelowComponent
 
@@ -2102,9 +2030,7 @@
 ---@field min_speed number? Members<br>C++Type: float<br>---<br>The entity that owns this component is killed if its speed (via VelocityComponent) falls below this value.
 ---@field mMinSpeedSquared number? Members<br>C++Type: float
 
----@class DroneLauncherComponentClass
----@field comp_id integer
----@field enable boolean
+---@class DroneLauncherComponentClass : EntityComponent
 ---@field attr DroneLauncherComponent
 ---@field set_attrs NewDroneLauncherComponent
 
@@ -2114,9 +2040,7 @@
 ---@class NewDroneLauncherComponent
 ---@field drone_entity_file string? Members<br>C++Type: std::string
 
----@class DrugEffectComponentClass
----@field comp_id integer
----@field enable boolean
+---@class DrugEffectComponentClass : EntityComponent
 ---@field attr DrugEffectComponent
 ---@field set_attrs NewDrugEffectComponent
 
@@ -2128,9 +2052,7 @@
 ---@field drug_fx_target unsupported? Objects<br>C++Type: ConfigDrugFx
 ---@field m_drug_fx_current unsupported? Objects<br>C++Type: ConfigDrugFx
 
----@class DrugEffectModifierComponentClass
----@field comp_id integer
----@field enable boolean
+---@class DrugEffectModifierComponentClass : EntityComponent
 ---@field attr DrugEffectModifierComponent
 ---@field set_attrs NewDrugEffectModifierComponent
 
@@ -2142,9 +2064,7 @@
 ---@field fx_add unsupported? Objects<br>C++Type: ConfigDrugFx
 ---@field fx_multiply unsupported? Objects<br>C++Type: ConfigDrugFx
 
----@class ElectricChargeComponentClass
----@field comp_id integer
----@field enable boolean
+---@class ElectricChargeComponentClass : EntityComponent
 ---@field attr ElectricChargeComponent
 ---@field set_attrs NewElectricChargeComponent
 
@@ -2164,9 +2084,7 @@
 ---@field fx_emission_interval_max integer? Members<br>C++Type: int
 ---@field charge integer? Members<br>C++Type: int
 
----@class ElectricityComponentClass
----@field comp_id integer
----@field enable boolean
+---@class ElectricityComponentClass : EntityComponent
 ---@field attr ElectricityComponent
 ---@field set_attrs NewElectricityComponent
 
@@ -2206,9 +2124,7 @@
 ---@field mPrevMaterial integer? Privates<br>C++Type: int
 ---@field mShouldPlaySound boolean? Privates<br>C++Type: bool
 
----@class ElectricityReceiverComponentClass
----@field comp_id integer
----@field enable boolean
+---@class ElectricityReceiverComponentClass : EntityComponent
 ---@field attr ElectricityReceiverComponent
 ---@field set_attrs NewElectricityReceiverComponent
 
@@ -2234,9 +2150,7 @@
 ---@field mNextElectrifiedMsgFrame integer? Privates<br>C++Type: int
 ---@field mNextSwitchOnMsgFrame integer? Privates<br>C++Type: int
 
----@class ElectricitySourceComponentClass
----@field comp_id integer
----@field enable boolean
+---@class ElectricitySourceComponentClass : EntityComponent
 ---@field attr ElectricitySourceComponent
 ---@field set_attrs NewElectricitySourceComponent
 
@@ -2250,9 +2164,7 @@
 ---@field emission_interval_frames integer? Members<br>C++Type: int
 ---@field mNextFrameEmitElectricity integer? Privates<br>C++Type: int
 
----@class EndingMcGuffinComponentClass
----@field comp_id integer
----@field enable boolean
+---@class EndingMcGuffinComponentClass : EntityComponent
 ---@field attr EndingMcGuffinComponent
 ---@field set_attrs NewEndingMcGuffinComponent
 
@@ -2264,9 +2176,7 @@
 ---@field TEMP_TEMPY number? Members<br>C++Type: float
 ---@field TEMP_TEMP_TEMP number? Members<br>C++Type: float
 
----@class EnergyShieldComponentClass
----@field comp_id integer
----@field enable boolean
+---@class EnergyShieldComponentClass : EntityComponent
 ---@field attr EnergyShieldComponent
 ---@field set_attrs NewEnergyShieldComponent
 
@@ -2290,9 +2200,7 @@
 ---@field energy number? Members<br>C++Type: float
 ---@field mPrevPosition field_vec2? Privates<br>C++Type: vec2
 
----@class ExplodeOnDamageComponentClass
----@field comp_id integer
----@field enable boolean
+---@class ExplodeOnDamageComponentClass : EntityComponent
 ---@field attr ExplodeOnDamageComponent
 ---@field set_attrs NewExplodeOnDamageComponent
 
@@ -2312,9 +2220,7 @@
 ---@field config_explosion unsupported? Objects<br>C++Type: ConfigExplosion<br>---<br>if we have explosion, it's the setup for it
 ---@field mDone boolean? Privates<br>C++Type: bool
 
----@class ExplosionComponentClass
----@field comp_id integer
----@field enable boolean
+---@class ExplosionComponentClass : EntityComponent
 ---@field attr ExplosionComponent
 ---@field set_attrs NewExplosionComponent
 
@@ -2334,9 +2240,7 @@
 ---@field config_explosion unsupported? Objects<br>C++Type: ConfigExplosion<br>---<br>setup for out explosion
 ---@field trigger unsupported? Custom data types<br>C++Type: EXPLOSION_TRIGGER_TYPE::Enum<br>---<br>what triggers the explosion
 
----@class FishAIComponentClass
----@field comp_id integer
----@field enable boolean
+---@class FishAIComponentClass : EntityComponent
 ---@field attr FishAIComponent
 ---@field set_attrs NewFishAIComponent
 
@@ -2358,9 +2262,7 @@
 ---@field stuck_counter integer? Privates<br>C++Type: int
 ---@field mLastCheckPos field_vec2? Privates<br>C++Type: vec2
 
----@class FlyingComponentClass
----@field comp_id integer
----@field enable boolean
+---@class FlyingComponentClass : EntityComponent
 ---@field attr FlyingComponent
 ---@field set_attrs NewFlyingComponent
 
@@ -2378,9 +2280,7 @@
 ---@field perlin_wind_x number? Members<br>C++Type: float<br>---<br>wind velocity that gets added to the samples
 ---@field perlin_wind_y number? Members<br>C++Type: float<br>---<br>wind velocity that gets added to the samples
 
----@class FogOfWarRadiusComponentClass
----@field comp_id integer
----@field enable boolean
+---@class FogOfWarRadiusComponentClass : EntityComponent
 ---@field attr FogOfWarRadiusComponent
 ---@field set_attrs NewFogOfWarRadiusComponent
 
@@ -2390,9 +2290,7 @@
 ---@class NewFogOfWarRadiusComponent
 ---@field radius number? Members<br>C++Type: float<br>---<br>256 is the default player has
 
----@class FogOfWarRemoverComponentClass
----@field comp_id integer
----@field enable boolean
+---@class FogOfWarRemoverComponentClass : EntityComponent
 ---@field attr FogOfWarRemoverComponent
 ---@field set_attrs NewFogOfWarRemoverComponent
 
@@ -2402,9 +2300,7 @@
 ---@class NewFogOfWarRemoverComponent
 ---@field radius number? Members<br>C++Type: float
 
----@class GameAreaEffectComponentClass
----@field comp_id integer
----@field enable boolean
+---@class GameAreaEffectComponentClass : EntityComponent
 ---@field attr GameAreaEffectComponent
 ---@field set_attrs NewGameAreaEffectComponent
 
@@ -2424,9 +2320,7 @@
 ---@field mEntitiesAppliedOutTo unsupported? Privates<br>C++Type: VECTOR_ENTITYID
 ---@field mEntitiesAppliedFrame unsupported? Privates<br>C++Type: VECTOR_INT
 
----@class GameEffectComponentClass
----@field comp_id integer
----@field enable boolean
+---@class GameEffectComponentClass : EntityComponent
 ---@field attr GameEffectComponent
 ---@field set_attrs NewGameEffectComponent
 
@@ -2494,9 +2388,7 @@
 ---@field ragdoll_material integer? Custom data types<br>C++Type: int<br>---<br>converts to string name of the material that ragdoll is made out of
 ---@field causing_status_effect unsupported? Custom data types<br>C++Type: StatusEffectType<br>---<br>Status effect that caused this game effect, if any
 
----@class GameLogComponentClass
----@field comp_id integer
----@field enable boolean
+---@class GameLogComponentClass : EntityComponent
 ---@field attr GameLogComponent
 ---@field set_attrs NewGameLogComponent
 
@@ -2514,9 +2406,7 @@
 ---@field mVisitiedBiomes unsupported? Custom data types<br>C++Type: VISITED_VEC<br>---<br>list of visited biomes
 ---@field mNewBiomeCheckFrame integer? Privates<br>C++Type: int
 
----@class GameStatsComponentClass
----@field comp_id integer
----@field enable boolean
+---@class GameStatsComponentClass : EntityComponent
 ---@field attr GameStatsComponent
 ---@field set_attrs NewGameStatsComponent
 
@@ -2536,9 +2426,7 @@
 ---@field dont_do_logplayerkill boolean? Members<br>C++Type: bool<br>---<br>if 1, StatsLogPlayerKill must be manually called from lua
 ---@field player_polymorph_count integer? Members<br>C++Type: int<br>---<br>skip loading of stats if this higher than 0 and decrament this by one
 
----@class GasBubbleComponentClass
----@field comp_id integer
----@field enable boolean
+---@class GasBubbleComponentClass : EntityComponent
 ---@field attr GasBubbleComponent
 ---@field set_attrs NewGasBubbleComponent
 
@@ -2552,9 +2440,7 @@
 ---@field max_speed number? Members<br>C++Type: float
 ---@field mVelocity number? Privates<br>C++Type: float
 
----@class GenomeDataComponentClass
----@field comp_id integer
----@field enable boolean
+---@class GenomeDataComponentClass : EntityComponent
 ---@field attr GenomeDataComponent
 ---@field set_attrs NewGenomeDataComponent
 
@@ -2574,9 +2460,7 @@
 ---@field friend_thundermage boolean? Privates<br>C++Type: LensValue<bool><br>---<br>if 1, thunder mage doesn't attack this
 ---@field friend_firemage boolean? Privates<br>C++Type: LensValue<bool><br>---<br>if 1, fire mage doesn't attack this
 
----@class GhostComponentClass
----@field comp_id integer
----@field enable boolean
+---@class GhostComponentClass : EntityComponent
 ---@field attr GhostComponent
 ---@field set_attrs NewGhostComponent
 
@@ -2612,9 +2496,7 @@
 ---@field mRandomTarget field_vec2? Privates<br>C++Type: vec2
 ---@field mNextTargetCheckFrame integer? Privates<br>C++Type: int
 
----@class GodInfoComponentClass
----@field comp_id integer
----@field enable boolean
+---@class GodInfoComponentClass : EntityComponent
 ---@field attr GodInfoComponent
 ---@field set_attrs NewGodInfoComponent
 
@@ -2630,9 +2512,7 @@
 ---@field gold number? Members<br>C++Type: float<br>---<br>How much gold the player has
 ---@field god_entity unsupported? Privates<br>C++Type: Entity*
 
----@class GunComponentClass
----@field comp_id integer
----@field enable boolean
+---@class GunComponentClass : EntityComponent
 ---@field attr GunComponent
 ---@field set_attrs NewGunComponent
 
@@ -2642,9 +2522,7 @@
 ---@class NewGunComponent
 ---@field mLuaManager unsupported? Privates<br>C++Type: LuaManager*
 
----@class HealthBarComponentClass
----@field comp_id integer
----@field enable boolean
+---@class HealthBarComponentClass : EntityComponent
 ---@field attr HealthBarComponent
 ---@field set_attrs NewHealthBarComponent
 
@@ -2652,9 +2530,7 @@
 
 ---@class NewHealthBarComponent
 
----@class HitEffectComponentClass
----@field comp_id integer
----@field enable boolean
+---@class HitEffectComponentClass : EntityComponent
 ---@field attr HitEffectComponent
 ---@field set_attrs NewHitEffectComponent
 
@@ -2672,9 +2548,7 @@
 ---@field condition_status unsupported? Custom data types<br>C++Type: StatusEffectType<br>---<br>Hit entity needs to have this 'STATUS_EFFECT' for effects to apply
 ---@field effect_hit unsupported? Custom data types<br>C++Type: HIT_EFFECT::Enum<br>---<br>What kind of 'HIT_EFFECT' is applied to hit entity if condition is true
 
----@class HitboxComponentClass
----@field comp_id integer
----@field enable boolean
+---@class HitboxComponentClass : EntityComponent
 ---@field attr HitboxComponent
 ---@field set_attrs NewHitboxComponent
 
@@ -2702,9 +2576,7 @@
 ---@field offset field_vec2? Custom data types<br>C++Type: vec2
 ---@field dead boolean? Privates<br>C++Type: bool
 
----@class HomingComponentClass
----@field comp_id integer
----@field enable boolean
+---@class HomingComponentClass : EntityComponent
 ---@field attr HomingComponent
 ---@field set_attrs NewHomingComponent
 
@@ -2730,9 +2602,7 @@
 ---@field predefined_target integer? Members<br>C++Type: EntityID<br>---<br>If set, we track this entity
 ---@field look_for_root_entities_only boolean? Members<br>C++Type: bool<br>---<br>if set, will only look for entities that are _not_ child entities.
 
----@class HotspotComponentClass
----@field comp_id integer
----@field enable boolean
+---@class HotspotComponentClass : EntityComponent
 ---@field attr HotspotComponent
 ---@field set_attrs NewHotspotComponent
 
@@ -2746,9 +2616,7 @@
 ---@field sprite_hotspot_name string? Members<br>C++Type: std::string
 ---@field offset field_vec2? Custom data types<br>C++Type: vec2
 
----@class IKLimbAttackerComponentClass
----@field comp_id integer
----@field enable boolean
+---@class IKLimbAttackerComponentClass : EntityComponent
 ---@field attr IKLimbAttackerComponent
 ---@field set_attrs NewIKLimbAttackerComponent
 
@@ -2774,9 +2642,7 @@
 ---@field mState unsupported? Privates<br>C++Type: IKLimbAttackerState
 ---@field mStateTimer number? Privates<br>C++Type: float
 
----@class IKLimbComponentClass
----@field comp_id integer
----@field enable boolean
+---@class IKLimbComponentClass : EntityComponent
 ---@field attr IKLimbComponent
 ---@field set_attrs NewIKLimbComponent
 
@@ -2804,9 +2670,7 @@
 ---@field mPart1PrevPos field_vec2? Privates<br>C++Type: vec2
 ---@field mPart1PrevRotation number? Privates<br>C++Type: float
 
----@class IKLimbWalkerComponentClass
----@field comp_id integer
----@field enable boolean
+---@class IKLimbWalkerComponentClass : EntityComponent
 ---@field attr IKLimbWalkerComponent
 ---@field set_attrs NewIKLimbWalkerComponent
 
@@ -2836,9 +2700,7 @@
 ---@field mPrevTarget field_vec2? Custom data types<br>C++Type: vec2
 ---@field mPrevCenterPosition field_vec2? Custom data types<br>C++Type: vec2
 
----@class IKLimbsAnimatorComponentClass
----@field comp_id integer
----@field enable boolean
+---@class IKLimbsAnimatorComponentClass : EntityComponent
 ---@field attr IKLimbsAnimatorComponent
 ---@field set_attrs NewIKLimbsAnimatorComponent
 
@@ -2868,9 +2730,7 @@
 ---@field mLimbStates unsupported? Privates<br>C++Type: IKLimbStateVec
 ---@field mHasGroundAttachmentOnAnyLeg boolean? Privates<br>C++Type: bool<br>---<br>Will be set to true if at least one leg is attached to ground.
 
----@class IngestionComponentClass
----@field comp_id integer
----@field enable boolean
+---@class IngestionComponentClass : EntityComponent
 ---@field attr IngestionComponent
 ---@field set_attrs NewIngestionComponent
 
@@ -2902,9 +2762,7 @@
 ---@field m_ingestion_satiation_material_cache unsupported? Privates<br>C++Type: std::set<int32>
 ---@field m_damage_effect_lifetime integer? Privates<br>C++Type: int32
 
----@class InheritTransformComponentClass
----@field comp_id integer
----@field enable boolean
+---@class InheritTransformComponentClass : EntityComponent
 ---@field attr InheritTransformComponent
 ---@field set_attrs NewInheritTransformComponent
 
@@ -2928,9 +2786,7 @@
 ---@field Transform unsupported? Custom data types<br>C++Type: types::xform
 ---@field mUpdateFrame integer? Privates<br>C++Type: int
 
----@class InteractableComponentClass
----@field comp_id integer
----@field enable boolean
+---@class InteractableComponentClass : EntityComponent
 ---@field attr InteractableComponent
 ---@field set_attrs NewInteractableComponent
 
@@ -2946,9 +2802,7 @@
 ---@field name string? Members<br>C++Type: std::string<br>---<br>this name is called to the on_interacted function on LuaComponents
 ---@field exclusivity_group integer? Members<br>C++Type: int<br>---<br>If > 0, only 1 instance of this interaction can be display at the same time
 
----@class Inventory2ComponentClass
----@field comp_id integer
----@field enable boolean
+---@class Inventory2ComponentClass : EntityComponent
 ---@field attr Inventory2Component
 ---@field set_attrs NewInventory2Component
 
@@ -2988,9 +2842,7 @@
 ---@field mIntroEquipItemLerp number? Privates<br>C++Type: float
 ---@field mSmoothedItemAngleVec field_vec2? Privates<br>C++Type: vec2
 
----@class InventoryComponentClass
----@field comp_id integer
----@field enable boolean
+---@class InventoryComponentClass : EntityComponent
 ---@field attr InventoryComponent
 ---@field set_attrs NewInventoryComponent
 
@@ -3014,9 +2866,7 @@
 ---@field update_listener unsupported? Privates<br>C++Type: InvenentoryUpdateListener*<br>---<br>listener to keep ui up with ability changes
 ---@field items unsupported? Privates<br>C++Type: INVENTORYITEM_VECTOR
 
----@class InventoryGuiComponentClass
----@field comp_id integer
----@field enable boolean
+---@class InventoryGuiComponentClass : EntityComponent
 ---@field attr InventoryGuiComponent
 ---@field set_attrs NewInventoryGuiComponent
 
@@ -3052,9 +2902,7 @@
 ---@field mFrameShake_FlyBar integer? Privates<br>C++Type: int<br>---<br>for animations of shaking them bars
 ---@field mFrameShake_FireRateWaitBar integer? Privates<br>C++Type: int<br>---<br>for animations of shaking them bars
 
----@class ItemAIKnowledgeComponentClass
----@field comp_id integer
----@field enable boolean
+---@class ItemAIKnowledgeComponentClass : EntityComponent
 ---@field attr ItemAIKnowledgeComponent
 ---@field set_attrs NewItemAIKnowledgeComponent
 
@@ -3088,9 +2936,7 @@
 ---@field never_use boolean? Members<br>C++Type: bool
 ---@field ranged_min_distance number? Members<br>C++Type: float
 
----@class ItemActionComponentClass
----@field comp_id integer
----@field enable boolean
+---@class ItemActionComponentClass : EntityComponent
 ---@field attr ItemActionComponent
 ---@field set_attrs NewItemActionComponent
 
@@ -3100,9 +2946,7 @@
 ---@class NewItemActionComponent
 ---@field action_id string? Members<br>C++Type: std::string<br>---<br>the name ID of the action
 
----@class ItemAlchemyComponentClass
----@field comp_id integer
----@field enable boolean
+---@class ItemAlchemyComponentClass : EntityComponent
 ---@field attr ItemAlchemyComponent
 ---@field set_attrs NewItemAlchemyComponent
 
@@ -3122,9 +2966,7 @@
 ---@field material_increase_uses_remaining integer? Custom data types<br>C++Type: int
 ---@field material_sacrifice integer? Custom data types<br>C++Type: int
 
----@class ItemChestComponentClass
----@field comp_id integer
----@field enable boolean
+---@class ItemChestComponentClass : EntityComponent
 ---@field attr ItemChestComponent
 ---@field set_attrs NewItemChestComponent
 
@@ -3148,9 +2990,7 @@
 ---@field other_entities_to_spawn string? Members<br>C++Type: std::string<br>---<br>file names of other entities we should spawn from this chest, comma separated
 ---@field mSeed integer? Members<br>C++Type: unsigned int<br>---<br>this is used to figure out what we spawn from this chest
 
----@class ItemComponentClass
----@field comp_id integer
----@field enable boolean
+---@class ItemComponentClass : EntityComponent
 ---@field attr ItemComponent
 ---@field set_attrs NewItemComponent
 
@@ -3238,9 +3078,7 @@
 ---@field mItemUid integer? Privates<br>C++Type: int
 ---@field mIsIdentified boolean? Privates<br>C++Type: bool
 
----@class ItemCostComponentClass
----@field comp_id integer
----@field enable boolean
+---@class ItemCostComponentClass : EntityComponent
 ---@field attr ItemCostComponent
 ---@field set_attrs NewItemCostComponent
 
@@ -3254,9 +3092,7 @@
 ---@field stealable boolean? Members<br>C++Type: bool<br>---<br>if set - will check that it's within an area called shop
 ---@field mExCost integer? Privates<br>C++Type: int64<br>---<br>used to change the text on the sprite
 
----@class ItemPickUpperComponentClass
----@field comp_id integer
----@field enable boolean
+---@class ItemPickUpperComponentClass : EntityComponent
 ---@field attr ItemPickUpperComponent
 ---@field set_attrs NewItemPickUpperComponent
 
@@ -3276,9 +3112,7 @@
 ---@field drop_items_on_death boolean? Members<br>C++Type: bool<br>---<br>if true, will drop all items. E.g. if true for player, player drops their wands
 ---@field mLatestItemOverlapInfoBoxPosition field_vec2? Custom data types<br>C++Type: vec2
 
----@class ItemRechargeNearGroundComponentClass
----@field comp_id integer
----@field enable boolean
+---@class ItemRechargeNearGroundComponentClass : EntityComponent
 ---@field attr ItemRechargeNearGroundComponent
 ---@field set_attrs NewItemRechargeNearGroundComponent
 
@@ -3290,9 +3124,7 @@
 ---@field TEMP_TEMPY number? Members<br>C++Type: float
 ---@field TEMP_TEMP_TEMP number? Members<br>C++Type: float
 
----@class ItemStashComponentClass
----@field comp_id integer
----@field enable boolean
+---@class ItemStashComponentClass : EntityComponent
 ---@field attr ItemStashComponent
 ---@field set_attrs NewItemStashComponent
 
@@ -3308,9 +3140,7 @@
 ---@field mNextFrameOpenable integer? Privates<br>C++Type: int
 ---@field mFrameOpened integer? Privates<br>C++Type: int
 
----@class KickComponentClass
----@field comp_id integer
----@field enable boolean
+---@class KickComponentClass : EntityComponent
 ---@field attr KickComponent
 ---@field set_attrs NewKickComponent
 
@@ -3334,9 +3164,7 @@
 ---@field kick_damage number? Custom data types<br>C++Type: LensValue<float><br>---<br>( 1.f / 25.f )
 ---@field kick_knockback number? Custom data types<br>C++Type: LensValue<float><br>---<br>knockback force for entities
 
----@class LaserEmitterComponentClass
----@field comp_id integer
----@field enable boolean
+---@class LaserEmitterComponentClass : EntityComponent
 ---@field attr LaserEmitterComponent
 ---@field set_attrs NewLaserEmitterComponent
 
@@ -3352,9 +3180,7 @@
 ---@field laser_angle_add_rad number? Members<br>C++Type: float<br>---<br>Beam angle = entity angle + laser_angle_add_rad
 ---@field laser unsupported? Objects<br>C++Type: ConfigLaser
 
----@class LevitationComponentClass
----@field comp_id integer
----@field enable boolean
+---@class LevitationComponentClass : EntityComponent
 ---@field attr LevitationComponent
 ---@field set_attrs NewLevitationComponent
 
@@ -3370,9 +3196,7 @@
 ---@field box2d_force number? Members<br>C++Type: float<br>---<br>how much do we apply the mouse movements to the entitiy
 ---@field effect_lifetime_frames integer? Members<br>C++Type: int
 
----@class LifetimeComponentClass
----@field comp_id integer
----@field enable boolean
+---@class LifetimeComponentClass : EntityComponent
 ---@field attr LifetimeComponent
 ---@field set_attrs NewLifetimeComponent
 
@@ -3400,9 +3224,7 @@
 ---@field creation_frame integer? Privates<br>C++Type: int<br>---<br>we'll set this to GG.GetFrameNum() when this component is created
 ---@field kill_frame integer? Privates<br>C++Type: int<br>---<br>frame that this is killed at
 
----@class LightComponentClass
----@field comp_id integer
----@field enable boolean
+---@class LightComponentClass : EntityComponent
 ---@field attr LightComponent
 ---@field set_attrs NewLightComponent
 
@@ -3432,9 +3254,7 @@
 ---@field mAlpha number? Privates<br>C++Type: float
 ---@field mSprite unsupported? Privates<br>C++Type: as::Sprite*
 
----@class LightningComponentClass
----@field comp_id integer
----@field enable boolean
+---@class LightningComponentClass : EntityComponent
 ---@field attr LightningComponent
 ---@field set_attrs NewLightningComponent
 
@@ -3456,9 +3276,7 @@
 ---@field mExPosition field_vec2? Privates<br>C++Type: vec2<br>---<br>stores the ex position of this entity
 ---@field mArcTarget integer? Privates<br>C++Type: EntityID<br>---<br>if 'mArcTarget' points to an existing entity a lighting arc will be created between this entity and 'mArcTarget'
 
----@class LimbBossComponentClass
----@field comp_id integer
----@field enable boolean
+---@class LimbBossComponentClass : EntityComponent
 ---@field attr LimbBossComponent
 ---@field set_attrs NewLimbBossComponent
 
@@ -3474,9 +3292,7 @@
 ---@field mMoveToPositionX number? Privates<br>C++Type: float
 ---@field mMoveToPositionY number? Privates<br>C++Type: float
 
----@class LiquidDisplacerComponentClass
----@field comp_id integer
----@field enable boolean
+---@class LiquidDisplacerComponentClass : EntityComponent
 ---@field attr LiquidDisplacerComponent
 ---@field set_attrs NewLiquidDisplacerComponent
 
@@ -3494,9 +3310,7 @@
 ---@field mPrevX integer? Privates<br>C++Type: int
 ---@field mPrevY integer? Privates<br>C++Type: int
 
----@class LoadEntitiesComponentClass
----@field comp_id integer
----@field enable boolean
+---@class LoadEntitiesComponentClass : EntityComponent
 ---@field attr LoadEntitiesComponent
 ---@field set_attrs NewLoadEntitiesComponent
 
@@ -3514,9 +3328,7 @@
 ---@field mTimerTriggerFrame integer? Members<br>C++Type: int
 ---@field count unsupported? Custom data types<br>C++Type: ValueRangeInt<br>---<br>how many entities should be loaded (random range)
 
----@class LocationMarkerComponentClass
----@field comp_id integer
----@field enable boolean
+---@class LocationMarkerComponentClass : EntityComponent
 ---@field attr LocationMarkerComponent
 ---@field set_attrs NewLocationMarkerComponent
 
@@ -3526,9 +3338,7 @@
 ---@class NewLocationMarkerComponent
 ---@field id integer? Members<br>C++Type: int
 
----@class LooseGroundComponentClass
----@field comp_id integer
----@field enable boolean
+---@class LooseGroundComponentClass : EntityComponent
 ---@field attr LooseGroundComponent
 ---@field set_attrs NewLooseGroundComponent
 
@@ -3560,9 +3370,7 @@
 ---@field chunk_material integer? Custom data types<br>C++Type: int<br>---<br>String name of chunk material
 ---@field mChunkCount integer? Privates<br>C++Type: int<br>---<br>how many chunks are we allowed to do, -1 = infinite
 
----@class LuaComponentClass
----@field comp_id integer
----@field enable boolean
+---@class LuaComponentClass : EntityComponent
 ---@field attr LuaComponent
 ---@field set_attrs NewLuaComponent
 
@@ -3656,9 +3464,7 @@
 ---@field mLuaManager unsupported? Privates<br>C++Type: LuaManager*
 ---@field mPersistentValues unsupported? Privates<br>C++Type: ValueMap
 
----@class MagicConvertMaterialComponentClass
----@field comp_id integer
----@field enable boolean
+---@class MagicConvertMaterialComponentClass : EntityComponent
 ---@field attr MagicConvertMaterialComponent
 ---@field set_attrs NewMagicConvertMaterialComponent
 
@@ -3716,9 +3522,7 @@
 ---@field mFromMaterialArray unsupported? Privates<br>C++Type: std::vector<int>
 ---@field mToMaterialArray unsupported? Privates<br>C++Type: std::vector<int>
 
----@class MagicXRayComponentClass
----@field comp_id integer
----@field enable boolean
+---@class MagicXRayComponentClass : EntityComponent
 ---@field attr MagicXRayComponent
 ---@field set_attrs NewMagicXRayComponent
 
@@ -3734,9 +3538,7 @@
 ---@field mStep integer? Members<br>C++Type: int
 ---@field mRadius integer? Members<br>C++Type: int
 
----@class ManaReloaderComponentClass
----@field comp_id integer
----@field enable boolean
+---@class ManaReloaderComponentClass : EntityComponent
 ---@field attr ManaReloaderComponent
 ---@field set_attrs NewManaReloaderComponent
 
@@ -3744,9 +3546,7 @@
 
 ---@class NewManaReloaderComponent
 
----@class MaterialAreaCheckerComponentClass
----@field comp_id integer
----@field enable boolean
+---@class MaterialAreaCheckerComponentClass : EntityComponent
 ---@field attr MaterialAreaCheckerComponent
 ---@field set_attrs NewMaterialAreaCheckerComponent
 
@@ -3774,9 +3574,7 @@
 ---@field mPosition integer? Privates<br>C++Type: int<br>---<br>keeps track where we are
 ---@field mLastFrameChecked integer? Privates<br>C++Type: int<br>---<br>keeps track of how often we've checked
 
----@class MaterialInventoryComponentClass
----@field comp_id integer
----@field enable boolean
+---@class MaterialInventoryComponentClass : EntityComponent
 ---@field attr MaterialInventoryComponent
 ---@field set_attrs NewMaterialInventoryComponent
 
@@ -3830,9 +3628,7 @@
 ---@field ex_position field_vec2? Privates<br>C++Type: vec2<br>---<br>used to figure out movement velocity
 ---@field ex_angle number? Privates<br>C++Type: float<br>---<br>used to figure out movement velocity
 
----@class MaterialSeaSpawnerComponentClass
----@field comp_id integer
----@field enable boolean
+---@class MaterialSeaSpawnerComponentClass : EntityComponent
 ---@field attr MaterialSeaSpawnerComponent
 ---@field set_attrs NewMaterialSeaSpawnerComponent
 
@@ -3860,9 +3656,7 @@
 ---@field size field_ivec2? Custom data types<br>C++Type: ivec2<br>---<br>Size of the area to cover
 ---@field offset field_ivec2? Custom data types<br>C++Type: ivec2<br>---<br>Offset of the center of the area to cover
 
----@class MaterialSuckerComponentClass
----@field comp_id integer
----@field enable boolean
+---@class MaterialSuckerComponentClass : EntityComponent
 ---@field attr MaterialSuckerComponent
 ---@field set_attrs NewMaterialSuckerComponent
 
@@ -3896,9 +3690,7 @@
 ---@field mGoldAccumulator integer? Privates<br>C++Type: int<br>---<br>accumulates amount of gold picked during consecutive frames
 ---@field mLastFramePickedGold integer? Privates<br>C++Type: int<br>---<br>last frame we picked gold
 
----@class MoveToSurfaceOnCreateComponentClass
----@field comp_id integer
----@field enable boolean
+---@class MoveToSurfaceOnCreateComponentClass : EntityComponent
 ---@field attr MoveToSurfaceOnCreateComponent
 ---@field set_attrs NewMoveToSurfaceOnCreateComponent
 
@@ -3916,9 +3708,7 @@
 ---@field verlet_min_joint_distance number? Members<br>C++Type: float
 ---@field type unsupported? Custom data types<br>C++Type: MOVETOSURFACE_TYPE::Enum
 
----@class MusicEnergyAffectorComponentClass
----@field comp_id integer
----@field enable boolean
+---@class MusicEnergyAffectorComponentClass : EntityComponent
 ---@field attr MusicEnergyAffectorComponent
 ---@field set_attrs NewMusicEnergyAffectorComponent
 
@@ -3938,9 +3728,7 @@
 ---@field is_enemy boolean? Members<br>C++Type: bool
 ---@field energy_lerp_up_speed_multiplier number? Members<br>C++Type: float
 
----@class NinjaRopeComponentClass
----@field comp_id integer
----@field enable boolean
+---@class NinjaRopeComponentClass : EntityComponent
 ---@field attr NinjaRopeComponent
 ---@field set_attrs NewNinjaRopeComponent
 
@@ -3954,9 +3742,7 @@
 ---@field mLength number? Members<br>C++Type: float
 ---@field mSegments unsupported? Privates<br>C++Type: NINJA_ROPE_SEGMENT_VECTOR
 
----@class NullDamageComponentClass
----@field comp_id integer
----@field enable boolean
+---@class NullDamageComponentClass : EntityComponent
 ---@field attr NullDamageComponent
 ---@field set_attrs NewNullDamageComponent
 
@@ -3966,9 +3752,7 @@
 ---@class NewNullDamageComponent
 ---@field null_chance number? Members<br>C++Type: float<br>---<br>if less than 1, then will roll the die to see if it will NULL all damage. Stick this into your projectile entity
 
----@class OrbComponentClass
----@field comp_id integer
----@field enable boolean
+---@class OrbComponentClass : EntityComponent
 ---@field attr OrbComponent
 ---@field set_attrs NewOrbComponent
 
@@ -3978,9 +3762,7 @@
 ---@class NewOrbComponent
 ---@field orb_id integer? Members<br>C++Type: int<br>---<br>must be unique for every orb in the world
 
----@class ParticleEmitterComponentClass
----@field comp_id integer
----@field enable boolean
+---@class ParticleEmitterComponentClass : EntityComponent
 ---@field attr ParticleEmitterComponent
 ---@field set_attrs NewParticleEmitterComponent
 
@@ -4132,9 +3914,7 @@
 ---@field m_collision_angles unsupported? Privates<br>C++Type: float*
 ---@field m_particle_attractor_id unsupported? Privates<br>C++Type: int16
 
----@class PathFindingComponentClass
----@field comp_id integer
----@field enable boolean
+---@class PathFindingComponentClass : EntityComponent
 ---@field attr PathFindingComponent
 ---@field set_attrs NewPathFindingComponent
 
@@ -4234,9 +4014,7 @@
 ---@field debug_path unsupported? Privates<br>C++Type: VECTOR_PATHNODE<br>---<br>TODO: Comment
 ---@field jump_velocity_multiplier number? Privates<br>C++Type: LensValue<float><br>---<br>TODO: Comment
 
----@class PathFindingGridMarkerComponentClass
----@field comp_id integer
----@field enable boolean
+---@class PathFindingGridMarkerComponentClass : EntityComponent
 ---@field attr PathFindingGridMarkerComponent
 ---@field set_attrs NewPathFindingGridMarkerComponent
 
@@ -4254,9 +4032,7 @@
 ---@field player_marker_radius number? Members<br>C++Type: float
 ---@field mNode unsupported? Privates<br>C++Type: PathFindingNodeHandle<br>---<br>we change the work state of this node. thus we need to keep a reference to it
 
----@class PhysicsAIComponentClass
----@field comp_id integer
----@field enable boolean
+---@class PhysicsAIComponentClass : EntityComponent
 ---@field attr PhysicsAIComponent
 ---@field set_attrs NewPhysicsAIComponent
 
@@ -4324,9 +4100,7 @@
 ---@field mLastPositionWhenHadPath field_vec2? Privates<br>C++Type: vec2
 ---@field mHasLastPosition boolean? Privates<br>C++Type: bool
 
----@class PhysicsBody2ComponentClass
----@field comp_id integer
----@field enable boolean
+---@class PhysicsBody2ComponentClass : EntityComponent
 ---@field attr PhysicsBody2Component
 ---@field set_attrs NewPhysicsBody2Component
 
@@ -4394,9 +4168,7 @@
 ---@field mPixelCount unsupported? Privates<br>C++Type: uint32<br>---<br>if set, tracks the number of csolidcells the body has
 ---@field mRefreshed boolean? Privates<br>C++Type: bool<br>---<br>this is sure the bodies are only parsed once
 
----@class PhysicsBodyCollisionDamageComponentClass
----@field comp_id integer
----@field enable boolean
+---@class PhysicsBodyCollisionDamageComponentClass : EntityComponent
 ---@field attr PhysicsBodyCollisionDamageComponent
 ---@field set_attrs NewPhysicsBodyCollisionDamageComponent
 
@@ -4408,9 +4180,7 @@
 ---@field speed_threshold number? Members<br>C++Type: float
 ---@field damage_multiplier number? Members<br>C++Type: float
 
----@class PhysicsBodyComponentClass
----@field comp_id integer
----@field enable boolean
+---@class PhysicsBodyComponentClass : EntityComponent
 ---@field attr PhysicsBodyComponent
 ---@field set_attrs NewPhysicsBodyComponent
 
@@ -4484,9 +4254,7 @@
 ---@field mLocalPosition unsupported? Privates<br>C++Type: b2Vec2
 ---@field mRefreshed boolean? Privates<br>C++Type: bool<br>---<br>this is sure the bodies are only parsed once
 
----@class PhysicsImageShapeComponentClass
----@field comp_id integer
----@field enable boolean
+---@class PhysicsImageShapeComponentClass : EntityComponent
 ---@field attr PhysicsImageShapeComponent
 ---@field set_attrs NewPhysicsImageShapeComponent
 
@@ -4516,9 +4284,7 @@
 ---@field material integer? Custom data types<br>C++Type: int<br>---<br>the material from which the body is created
 ---@field mBody unsupported? Privates<br>C++Type: b2Body*<br>---<br>used in joint creation phase
 
----@class PhysicsJoint2ComponentClass
----@field comp_id integer
----@field enable boolean
+---@class PhysicsJoint2ComponentClass : EntityComponent
 ---@field attr PhysicsJoint2Component
 ---@field set_attrs NewPhysicsJoint2Component
 
@@ -4554,9 +4320,7 @@
 ---@field surface_attachment_offset_y number? Members<br>C++Type: float
 ---@field type unsupported? Custom data types<br>C++Type: JOINT_TYPE::Enum<br>---<br>Enum - REVOLUTE_JOINT, WELD_JOINT, REVOLUTE_JOINT_ATTACH_TO_NEARBY_SURFACE or WELD_JOINT_ATTACH_TO_NEARBY_SURFACE
 
----@class PhysicsJoint2MutatorComponentClass
----@field comp_id integer
----@field enable boolean
+---@class PhysicsJoint2MutatorComponentClass : EntityComponent
 ---@field attr PhysicsJoint2MutatorComponent
 ---@field set_attrs NewPhysicsJoint2MutatorComponent
 
@@ -4578,9 +4342,7 @@
 ---@field mPreviousMotorSpeed number? Privates<br>C++Type: float
 ---@field mPreviousMotorMaxTorque number? Privates<br>C++Type: float
 
----@class PhysicsJointComponentClass
----@field comp_id integer
----@field enable boolean
+---@class PhysicsJointComponentClass : EntityComponent
 ---@field attr PhysicsJointComponent
 ---@field set_attrs NewPhysicsJointComponent
 
@@ -4616,9 +4378,7 @@
 ---@field type unsupported? Custom data types<br>C++Type: JOINT_TYPE::Enum<br>---<br>Enum - JOINT_TYPE
 ---@field mJoint unsupported? Privates<br>C++Type: b2Joint*
 
----@class PhysicsKeepInWorldComponentClass
----@field comp_id integer
----@field enable boolean
+---@class PhysicsKeepInWorldComponentClass : EntityComponent
 ---@field attr PhysicsKeepInWorldComponent
 ---@field set_attrs NewPhysicsKeepInWorldComponent
 
@@ -4636,9 +4396,7 @@
 ---@field mExPosition field_vec2? Privates<br>C++Type: vec2
 ---@field mExRotation number? Privates<br>C++Type: float
 
----@class PhysicsPickUpComponentClass
----@field comp_id integer
----@field enable boolean
+---@class PhysicsPickUpComponentClass : EntityComponent
 ---@field attr PhysicsPickUpComponent
 ---@field set_attrs NewPhysicsPickUpComponent
 
@@ -4664,9 +4422,7 @@
 ---@field leftJoint unsupported? Privates<br>C++Type: b2WeldJoint*
 ---@field rightJoint unsupported? Privates<br>C++Type: b2WeldJoint*
 
----@class PhysicsRagdollComponentClass
----@field comp_id integer
----@field enable boolean
+---@class PhysicsRagdollComponentClass : EntityComponent
 ---@field attr PhysicsRagdollComponent
 ---@field set_attrs NewPhysicsRagdollComponent
 
@@ -4684,9 +4440,7 @@
 ---@field offset_y number? Members<br>C++Type: float<br>---<br>offset of where the ragdoll will be created
 ---@field bodies unsupported? Privates<br>C++Type: std::vector<b2Body*>*
 
----@class PhysicsShapeComponentClass
----@field comp_id integer
----@field enable boolean
+---@class PhysicsShapeComponentClass : EntityComponent
 ---@field attr PhysicsShapeComponent
 ---@field set_attrs NewPhysicsShapeComponent
 
@@ -4724,9 +4478,7 @@
 ---@field capsule_y_percent number? Members<br>C++Type: float
 ---@field material integer? Custom data types<br>C++Type: int<br>---<br>the material to use for collision audio
 
----@class PhysicsThrowableComponentClass
----@field comp_id integer
----@field enable boolean
+---@class PhysicsThrowableComponentClass : EntityComponent
 ---@field attr PhysicsThrowableComponent
 ---@field set_attrs NewPhysicsThrowableComponent
 
@@ -4756,9 +4508,7 @@
 ---@field hp integer? Members<br>C++Type: int<br>---<br>WIP WIP
 ---@field mHasJoint boolean? Privates<br>C++Type: bool
 
----@class PixelSceneComponentClass
----@field comp_id integer
----@field enable boolean
+---@class PixelSceneComponentClass : EntityComponent
 ---@field attr PixelSceneComponent
 ---@field set_attrs NewPixelSceneComponent
 
@@ -4782,9 +4532,7 @@
 ---@field skip_biome_checks boolean? Members<br>C++Type: bool<br>---<br>biome check is on by default - it will check that pixel scene is loaded so that every corner is in the same biome
 ---@field skip_edge_textures boolean? Members<br>C++Type: bool<br>---<br>if on - won't do the edge textures for the pixel scene
 
----@class PixelSpriteComponentClass
----@field comp_id integer
----@field enable boolean
+---@class PixelSpriteComponentClass : EntityComponent
 ---@field attr PixelSpriteComponent
 ---@field set_attrs NewPixelSpriteComponent
 
@@ -4810,9 +4558,7 @@
 ---@field create_box2d_bodies boolean? Members<br>C++Type: bool<br>---<br>if true, will create new pixel sprites with box2d bodies, instead of gridworld cells
 ---@field mPixelSprite unsupported? Custom data types<br>C++Type: PixelSprite*
 
----@class PlatformShooterPlayerComponentClass
----@field comp_id integer
----@field enable boolean
+---@class PlatformShooterPlayerComponentClass : EntityComponent
 ---@field attr PlatformShooterPlayerComponent
 ---@field set_attrs NewPlatformShooterPlayerComponent
 
@@ -4892,9 +4638,7 @@
 ---@field mCessationDo boolean? Privates<br>C++Type: bool
 ---@field mCessationLifetime integer? Privates<br>C++Type: int
 
----@class PlayerCollisionComponentClass
----@field comp_id integer
----@field enable boolean
+---@class PlayerCollisionComponentClass : EntityComponent
 ---@field attr PlayerCollisionComponent
 ---@field set_attrs NewPlayerCollisionComponent
 
@@ -4916,9 +4660,7 @@
 ---@field mCollidedHorizontally boolean? Privates<br>C++Type: bool
 ---@field mPhysicsCollisionHax unsupported? Privates<br>C++Type: b2Body*<br>---<br>hax
 
----@class PlayerStatsComponentClass
----@field comp_id integer
----@field enable boolean
+---@class PlayerStatsComponentClass : EntityComponent
 ---@field attr PlayerStatsComponent
 ---@field set_attrs NewPlayerStatsComponent
 
@@ -4932,9 +4674,7 @@
 ---@field max_hp number? Members<br>C++Type: float
 ---@field speed number? Members<br>C++Type: float
 
----@class PositionSeedComponentClass
----@field comp_id integer
----@field enable boolean
+---@class PositionSeedComponentClass : EntityComponent
 ---@field attr PositionSeedComponent
 ---@field set_attrs NewPositionSeedComponent
 
@@ -4946,9 +4686,7 @@
 ---@field pos_x number? Members<br>C++Type: float
 ---@field pos_y number? Members<br>C++Type: float
 
----@class PotionComponentClass
----@field comp_id integer
----@field enable boolean
+---@class PotionComponentClass : EntityComponent
 ---@field attr PotionComponent
 ---@field set_attrs NewPotionComponent
 
@@ -4974,9 +4712,7 @@
 ---@field never_color boolean? Members<br>C++Type: bool<br>---<br>Petri: body_colored didn't seem to work, so I added never_color. It can be set to true if you never want the potion to be colored
 ---@field custom_color_material integer? Custom data types<br>C++Type: int<br>---<br>if set, will always use the color from this material
 
----@class PressurePlateComponentClass
----@field comp_id integer
----@field enable boolean
+---@class PressurePlateComponentClass : EntityComponent
 ---@field attr PressurePlateComponent
 ---@field set_attrs NewPressurePlateComponent
 
@@ -4996,9 +4732,7 @@
 ---@field aabb_max field_vec2? Custom data types<br>C++Type: vec2
 ---@field mNextFrame integer? Privates<br>C++Type: int
 
----@class ProjectileComponentClass
----@field comp_id integer
----@field enable boolean
+---@class ProjectileComponentClass : EntityComponent
 ---@field attr ProjectileComponent
 ---@field set_attrs NewProjectileComponent
 
@@ -5186,9 +4920,7 @@
 ---@field mDamagedEntities unsupported? Privates<br>C++Type: VEC_ENTITY
 ---@field mInitialSpeed number? Privates<br>C++Type: float
 
----@class RotateTowardsComponentClass
----@field comp_id integer
----@field enable boolean
+---@class RotateTowardsComponentClass : EntityComponent
 ---@field attr RotateTowardsComponent
 ---@field set_attrs NewRotateTowardsComponent
 
@@ -5198,9 +4930,7 @@
 ---@class NewRotateTowardsComponent
 ---@field entity_with_tag string? Members<br>C++Type: std::string<br>---<br>will rotate this entity towards the closest entity with tag
 
----@class SetLightAlphaFromVelocityComponentClass
----@field comp_id integer
----@field enable boolean
+---@class SetLightAlphaFromVelocityComponentClass : EntityComponent
 ---@field attr SetLightAlphaFromVelocityComponent
 ---@field set_attrs NewSetLightAlphaFromVelocityComponent
 
@@ -5212,9 +4942,7 @@
 ---@field max_velocity number? Members<br>C++Type: float
 ---@field mPrevPosition field_vec2? Privates<br>C++Type: vec2
 
----@class SetStartVelocityComponentClass
----@field comp_id integer
----@field enable boolean
+---@class SetStartVelocityComponentClass : EntityComponent
 ---@field attr SetStartVelocityComponent
 ---@field set_attrs NewSetStartVelocityComponent
 
@@ -5228,9 +4956,7 @@
 ---@field randomize_angle unsupported? Custom data types<br>C++Type: ValueRange<br>---<br>Random angle min max range in radians, clockwise. 0.0 points directly rightward.
 ---@field randomize_speed unsupported? Custom data types<br>C++Type: ValueRange<br>---<br>Random speed min max range
 
----@class ShotEffectComponentClass
----@field comp_id integer
----@field enable boolean
+---@class ShotEffectComponentClass : EntityComponent
 ---@field attr ShotEffectComponent
 ---@field set_attrs NewShotEffectComponent
 
@@ -5244,9 +4970,7 @@
 ---@field condition_effect noita_effect_enum? Custom data types<br>C++Type: GAME_EFFECT::Enum<br>---<br>Shooting entity needs to have this 'GAME_EFFECT' for effects to apply. If both 'condition_effect' and 'condition_status' are set, they are combined with AND logic
 ---@field condition_status unsupported? Custom data types<br>C++Type: StatusEffectType<br>---<br>Shooting entity needs to have this 'STATUS_EFFECT' for effects to apply
 
----@class SimplePhysicsComponentClass
----@field comp_id integer
----@field enable boolean
+---@class SimplePhysicsComponentClass : EntityComponent
 ---@field attr SimplePhysicsComponent
 ---@field set_attrs NewSimplePhysicsComponent
 
@@ -5258,9 +4982,7 @@
 ---@field can_go_up boolean? Members<br>C++Type: bool<br>---<br>if set, will not try to move this upwards
 ---@field mOldPosition field_vec2? Privates<br>C++Type: vec2<br>---<br>used for box2d simple physics
 
----@class SineWaveComponentClass
----@field comp_id integer
----@field enable boolean
+---@class SineWaveComponentClass : EntityComponent
 ---@field attr SineWaveComponent
 ---@field set_attrs NewSineWaveComponent
 
@@ -5274,9 +4996,7 @@
 ---@field sinewave_m number? Members<br>C++Type: float<br>---<br>sinewave_m * sinf( sinewave_freq * lifetime++)
 ---@field lifetime integer? Members<br>C++Type: int<br>---<br>-1 seems to fix some problems with this... sinewave_m * sinf( sinewave_freq * lifetime++)
 
----@class SpriteAnimatorComponentClass
----@field comp_id integer
----@field enable boolean
+---@class SpriteAnimatorComponentClass : EntityComponent
 ---@field attr SpriteAnimatorComponent
 ---@field set_attrs NewSpriteAnimatorComponent
 
@@ -5294,9 +5014,7 @@
 ---@field mCachedTargetSpriteTag unsupported? Privates<br>C++Type: ComponentTags
 ---@field mSendOnFinishedMessageName string? Privates<br>C++Type: std::string
 
----@class SpriteComponentClass
----@field comp_id integer
----@field enable boolean
+---@class SpriteComponentClass : EntityComponent
 ---@field attr SpriteComponent
 ---@field set_attrs NewSpriteComponent
 
@@ -5358,9 +5076,7 @@
 ---@field mRenderList unsupported? Privates<br>C++Type: SpriteRenderList*
 ---@field mRenderListHandle integer? Privates<br>C++Type: int32
 
----@class SpriteOffsetAnimatorComponentClass
----@field comp_id integer
----@field enable boolean
+---@class SpriteOffsetAnimatorComponentClass : EntityComponent
 ---@field attr SpriteOffsetAnimatorComponent
 ---@field set_attrs NewSpriteOffsetAnimatorComponent
 
@@ -5382,9 +5098,7 @@
 ---@field x_phase number? Members<br>C++Type: float
 ---@field x_phase_offset number? Members<br>C++Type: float
 
----@class SpriteParticleEmitterComponentClass
----@field comp_id integer
----@field enable boolean
+---@class SpriteParticleEmitterComponentClass : EntityComponent
 ---@field attr SpriteParticleEmitterComponent
 ---@field set_attrs NewSpriteParticleEmitterComponent
 
@@ -5476,9 +5190,7 @@
 ---@field expand_randomize_position field_vec2? Custom data types<br>C++Type: vec2<br>---<br>will add dt*this to randomize_position_aabb every frame
 ---@field mNextEmitFrame integer? Privates<br>C++Type: int
 
----@class SpriteStainsComponentClass
----@field comp_id integer
----@field enable boolean
+---@class SpriteStainsComponentClass : EntityComponent
 ---@field attr SpriteStainsComponent
 ---@field set_attrs NewSpriteStainsComponent
 
@@ -5498,9 +5210,7 @@
 ---@field mTextureHandle unsupported? Privates<br>C++Type: VirtualTextureHandle
 ---@field mState unsupported? Privates<br>C++Type: SpriteStainsState
 
----@class StatusEffectDataComponentClass
----@field comp_id integer
----@field enable boolean
+---@class StatusEffectDataComponentClass : EntityComponent
 ---@field attr StatusEffectDataComponent
 ---@field set_attrs NewStatusEffectDataComponent
 
@@ -5526,9 +5236,7 @@
 ---@field mStainEffectsSmoothedForUI unsupported? Privates<br>C++Type: VECTOR_FLOAT
 ---@field mHasChildIconsCached boolean? Privates<br>C++Type: bool
 
----@class StreamingKeepAliveComponentClass
----@field comp_id integer
----@field enable boolean
+---@class StreamingKeepAliveComponentClass : EntityComponent
 ---@field attr StreamingKeepAliveComponent
 ---@field set_attrs NewStreamingKeepAliveComponent
 
@@ -5540,9 +5248,7 @@
 ---@field TEMP_TEMPY number? Members<br>C++Type: float
 ---@field TEMP_TEMP_TEMP number? Members<br>C++Type: float
 
----@class TelekinesisComponentClass
----@field comp_id integer
----@field enable boolean
+---@class TelekinesisComponentClass : EntityComponent
 ---@field attr TelekinesisComponent
 ---@field set_attrs NewTelekinesisComponent
 
@@ -5580,9 +5286,7 @@
 ---@field mMinBodyDistance number? Members<br>C++Type: float
 ---@field mInteract boolean? Members<br>C++Type: bool<br>---<br>If set to true, telekinesis interaction will occur. Will automatically turn to false at the end of component update.
 
----@class TeleportComponentClass
----@field comp_id integer
----@field enable boolean
+---@class TeleportComponentClass : EntityComponent
 ---@field attr TeleportComponent
 ---@field set_attrs NewTeleportComponent
 
@@ -5610,9 +5314,7 @@
 ---@field teleported_entities unsupported? Privates<br>C++Type: ENTITY_VEC
 ---@field source_location_camera_aabb unsupported? Privates<br>C++Type: types::aabb
 
----@class TeleportProjectileComponentClass
----@field comp_id integer
----@field enable boolean
+---@class TeleportProjectileComponentClass : EntityComponent
 ---@field attr TeleportProjectileComponent
 ---@field set_attrs NewTeleportProjectileComponent
 
@@ -5628,9 +5330,7 @@
 ---@field reset_shooter_y_vel boolean? Members<br>C++Type: bool<br>---<br>If 1, will set shooter y velocity to 0 on teleport
 ---@field mWhoShot integer? Privates<br>C++Type: EntityID
 
----@class TextLogComponentClass
----@field comp_id integer
----@field enable boolean
+---@class TextLogComponentClass : EntityComponent
 ---@field attr TextLogComponent
 ---@field set_attrs NewTextLogComponent
 
@@ -5644,9 +5344,7 @@
 ---@field image_filename string? Members<br>C++Type: std::string
 ---@field mCachedName string? Privates<br>C++Type: std::string
 
----@class TorchComponentClass
----@field comp_id integer
----@field enable boolean
+---@class TorchComponentClass : EntityComponent
 ---@field attr TorchComponent
 ---@field set_attrs NewTorchComponent
 
@@ -5672,9 +5370,7 @@
 ---@field mIsOn boolean? Privates<br>C++Type: bool
 ---@field mFireIsBurningPrev boolean? Privates<br>C++Type: bool
 
----@class UIIconComponentClass
----@field comp_id integer
----@field enable boolean
+---@class UIIconComponentClass : EntityComponent
 ---@field attr UIIconComponent
 ---@field set_attrs NewUIIconComponent
 
@@ -5694,9 +5390,7 @@
 ---@field display_in_hud boolean? Members<br>C++Type: bool
 ---@field is_perk boolean? Members<br>C++Type: bool
 
----@class UIInfoComponentClass
----@field comp_id integer
----@field enable boolean
+---@class UIInfoComponentClass : EntityComponent
 ---@field attr UIInfoComponent
 ---@field set_attrs NewUIInfoComponent
 
@@ -5706,9 +5400,7 @@
 ---@class NewUIInfoComponent
 ---@field name string? Members<br>C++Type: std::string
 
----@class VariableStorageComponentClass
----@field comp_id integer
----@field enable boolean
+---@class VariableStorageComponentClass : EntityComponent
 ---@field attr VariableStorageComponent
 ---@field set_attrs NewVariableStorageComponent
 
@@ -5726,9 +5418,7 @@
 ---@field value_bool boolean? Members<br>C++Type: bool
 ---@field value_float number? Members<br>C++Type: float
 
----@class VelocityComponentClass
----@field comp_id integer
----@field enable boolean
+---@class VelocityComponentClass : EntityComponent
 ---@field attr VelocityComponent
 ---@field set_attrs NewVelocityComponent
 
@@ -5770,9 +5460,7 @@
 ---@field mAverageLiquidHitCount integer? Privates<br>C++Type: int
 ---@field mPrevPosition field_ivec2? Privates<br>C++Type: ivec2
 
----@class VerletPhysicsComponentClass
----@field comp_id integer
----@field enable boolean
+---@class VerletPhysicsComponentClass : EntityComponent
 ---@field attr VerletPhysicsComponent
 ---@field set_attrs NewVerletPhysicsComponent
 
@@ -5858,9 +5546,7 @@
 ---@field links unsupported? Privates<br>C++Type: VerletLinkArrayInline
 ---@field sprite unsupported? Privates<br>C++Type: VerletSprite*
 
----@class VerletWeaponComponentClass
----@field comp_id integer
----@field enable boolean
+---@class VerletWeaponComponentClass : EntityComponent
 ---@field attr VerletWeaponComponent
 ---@field set_attrs NewVerletWeaponComponent
 
@@ -5886,9 +5572,7 @@
 ---@field physics_impulse_coeff number? Members<br>C++Type: float
 ---@field mPlayerCooldownEnd integer? Privates<br>C++Type: int
 
----@class VerletWorldJointComponentClass
----@field comp_id integer
----@field enable boolean
+---@class VerletWorldJointComponentClass : EntityComponent
 ---@field attr VerletWorldJointComponent
 ---@field set_attrs NewVerletWorldJointComponent
 
@@ -5904,9 +5588,7 @@
 ---@field mUpdated boolean? Privates<br>C++Type: bool
 ---@field mCell unsupported? Privates<br>C++Type: grid::ICell*
 
----@class WalletComponentClass
----@field comp_id integer
----@field enable boolean
+---@class WalletComponentClass : EntityComponent
 ---@field attr WalletComponent
 ---@field set_attrs NewWalletComponent
 
@@ -5922,9 +5604,7 @@
 ---@field mMoneyPrevFrame integer? Members<br>C++Type: int64<br>---<br>HAX to give player towards infinite moneys
 ---@field mHasReachedInf boolean? Members<br>C++Type: bool<br>---<br>once it hits this value... keep it there
 
----@class WalletValuableComponentClass
----@field comp_id integer
----@field enable boolean
+---@class WalletValuableComponentClass : EntityComponent
 ---@field attr WalletValuableComponent
 ---@field set_attrs NewWalletValuableComponent
 
@@ -5934,9 +5614,7 @@
 ---@class NewWalletValuableComponent
 ---@field money_value integer? Members<br>C++Type: int
 
----@class WorldStateComponentClass
----@field comp_id integer
----@field enable boolean
+---@class WorldStateComponentClass : EntityComponent
 ---@field attr WorldStateComponent
 ---@field set_attrs NewWorldStateComponent
 
@@ -6068,9 +5746,7 @@
 ---@field fog_target_extra number? Privates<br>C++Type: float
 ---@field perk_rats_player_friendly_prev boolean? Privates<br>C++Type: bool
 
----@class WormAIComponentClass
----@field comp_id integer
----@field enable boolean
+---@class WormAIComponentClass : EntityComponent
 ---@field attr WormAIComponent
 ---@field set_attrs NewWormAIComponent
 
@@ -6122,9 +5798,7 @@
 ---@field mGiveUpAreaMaxX integer? Privates<br>C++Type: int
 ---@field mGiveUpAreaMaxY integer? Privates<br>C++Type: int
 
----@class WormAttractorComponentClass
----@field comp_id integer
----@field enable boolean
+---@class WormAttractorComponentClass : EntityComponent
 ---@field attr WormAttractorComponent
 ---@field set_attrs NewWormAttractorComponent
 
@@ -6136,9 +5810,7 @@
 ---@field direction integer? Members<br>C++Type: int<br>---<br>1 = attracts worms, -1 detracts worms
 ---@field radius number? Members<br>C++Type: float<br>---<br>radius of detracting worms
 
----@class WormComponentClass
----@field comp_id integer
----@field enable boolean
+---@class WormComponentClass : EntityComponent
 ---@field attr WormComponent
 ---@field set_attrs NewWormComponent
 
@@ -6200,9 +5872,7 @@
 ---@field mDirectionAdjustSpeed number? Privates<br>C++Type: float
 ---@field mPrevPositions unsupported? Privates<br>C++Type: WormPartPositions
 
----@class WormPlayerComponentClass
----@field comp_id integer
----@field enable boolean
+---@class WormPlayerComponentClass : EntityComponent
 ---@field attr WormPlayerComponent
 ---@field set_attrs NewWormPlayerComponent
 

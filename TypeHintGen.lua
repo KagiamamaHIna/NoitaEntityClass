@@ -29,8 +29,27 @@ local CppTypeToLuaType = {
     ["RAGDOLL_FX::Enum"] = "noita_ragdoll_fx",
 	
     ["vec2"] = "field_vec2",
-	["ivec2"] = "field_ivec2"
+    ["ivec2"] = "field_ivec2",
 }
+-- local CppVecType = {
+--     ["std::vector< int >"] = "integer",
+--     ["std::vector< float >"] = "number",
+--     ["std::vector< std::string >"] = "string",
+
+--     ["std::vector<int>"] = "integer",
+--     ["std::vector<float>"] = "number",
+--     ["std::vector<std::string>"] = "string",
+    
+--     VECTOR_STR = "string",
+
+--     VECTOR_ENTITYID = "integer",
+--     VECTOR_INT = "integer",
+--     VECTOR_INT32 = "integer",
+--     VEC_OF_MATERIALS = "integer",
+
+--     VECTOR_FLOAT = "number"
+-- }
+
 local comps = {
 
 }
@@ -143,9 +162,7 @@ file:write("\n")
 
 ---生成各个组件的字段
 for _,v in ipairs(CompList) do
-	local str = string.format([[---@class %sClass
----@field comp_id integer
----@field enable boolean
+	local str = string.format([[---@class %sClass : EntityComponent
 ---@field attr %s
 ---@field set_attrs New%s
 

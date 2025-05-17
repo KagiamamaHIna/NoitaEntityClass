@@ -1,4 +1,4 @@
----v1.0.9
+---v1.0.10
 
 ---如果为空则返回v（默认值），不为空返回本身的函数
 ---@param arg any
@@ -53,7 +53,9 @@ function EntityComponentObj(comp_id)
 		enable = nil,
         attr = {},
 		---@type table
-		set_attrs = nil
+        set_attrs = nil,
+        -- ---@type table
+		-- vec = nil
 	}
 
 	---设置组件的值
@@ -216,6 +218,34 @@ function EntityComponentObj(comp_id)
 		return result
 	end
 
+	-- local function VecGetArray(field_type)
+	-- 	local result = {}
+	-- 	setmetatable(result, {
+    --         __newindex = function(t, k)
+    --             rawset(t, k, nil)
+    --             print_error("EntityCompError:Vector attributes cannot be overridden")
+    --         end,
+    --         __index = function(t, k)
+	-- 			return compobj:GetVector(k, field_type)
+	-- 		end
+	-- 	})
+	-- 	return result
+	-- end
+
+	-- local function NewVecFieldObj()
+	-- 	local result = {}
+	-- 	setmetatable(result, {
+    --         __newindex = function(t, k)
+    --             rawset(t, k, nil)
+    --             print_error("EntityCompError:Vector attributes cannot be overridden")
+    --         end,
+    --         __index = function(t, k)
+	-- 			return VecGetArray(k)
+	-- 		end
+	-- 	})
+	-- 	return result
+	-- end
+
 	---属性
 	setmetatable(compobj.attr, {
 		__newindex = function(t, k, v)
@@ -247,22 +277,27 @@ function EntityComponentObj(comp_id)
             elseif k == "set_attrs" then
                 rawset(t, k, nil)
                 for tk, tv in pairs(v) do
-					if type(tv) == "table" and (tv.x ~= nil or tv.y ~= nil) then
-						local src_x, src_y = compobj:GetValue(k)
-                		src_x = tv.x or src_x
+                    if type(tv) == "table" and (tv.x ~= nil or tv.y ~= nil) then
+                        local src_x, src_y = compobj:GetValue(k)
+                        src_x = tv.x or src_x
                         src_y = tv.y or src_y
-						compobj:SetValue(tk, src_x, src_y)
+                        compobj:SetValue(tk, src_x, src_y)
                     else
-						compobj:SetValue(tk, tv)
-					end
-				end
+                        compobj:SetValue(tk, tv)
+                    end
+                end
+            -- elseif k == "vec" then
+			-- 	rawset(t, k, nil)
+            --     print_error("EntityCompError:Vector attributes cannot be overridden")
 			end
 		end,
 		__index = function(t, k)
 			if k == "enable" then
 				return compobj:GetEnable()
 			elseif k == "set_attrs" then
-				return compobj.attr
+                return compobj.attr
+            -- elseif k == "vec" then
+            --     return NewVecFieldObj()
 			end
         end,
 		__eq = function (t1, t2)
@@ -294,12 +329,18 @@ end
 function EntityObj(entity_id)
 	---@class NoitaEntity
 	local Entity = {
-		entity_id = entity_id,
-		---@type NoitaCompTo|table<string, EntityComponent[]>
-		comp = {}, --不包括被关闭的组件
-		---@type NoitaCompTo|table<string, EntityComponent[]>
+        entity_id = entity_id,
+		
+        ---@type NoitaCompTo
+		---@diagnostic disable-next-line: missing-fields
+        comp = {}, --不包括被关闭的组件
+		
+        ---@type NoitaCompTo
+		---@diagnostic disable-next-line: missing-fields
         comp_all = {}, --包括被关闭的组件
+		
         ---@type NewCompObj
+		---@diagnostic disable-next-line: missing-fields
 		NewComp = {},
 		attr = {
 			---@type number
