@@ -1,4 +1,4 @@
----v1.0.8
+---v1.0.9
 
 ---如果为空则返回v（默认值），不为空返回本身的函数
 ---@param arg any
@@ -251,7 +251,7 @@ function EntityComponentObj(comp_id)
 						local src_x, src_y = compobj:GetValue(k)
                 		src_x = tv.x or src_x
                         src_y = tv.y or src_y
-						compobj:SetValue(k, src_x, src_y)
+						compobj:SetValue(tk, src_x, src_y)
                     else
 						compobj:SetValue(tk, tv)
 					end
