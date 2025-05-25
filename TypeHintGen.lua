@@ -155,7 +155,7 @@ file:write("\n")
 file:write("---@class NewCompObj\n")
 ---生成组件索引转新建组件的注解
 for _,v in ipairs(CompList) do
-    local str = string.format("---@field %s fun(t: New%s): NoitaEntity\n", v, v)
+    local str = string.format("---@field %s fun(t: New%s): NoitaEntity,%sClass\n", v, v, v)
 	file:write(str)
 end
 file:write("\n")
