@@ -1,4 +1,84 @@
----v1.0.14.1
+---v1.0.14.2
+
+---@class ECList<V>: { [integer]: V }
+local ECListMetatable = {}
+
+--和标准table的列表行为一致，只是有成员方法
+---@generic V
+---@param t table<integer,V>
+---@return ECList<V>
+function NewECList(t)
+	return setmetatable(t,{__index = ECListMetatable})
+end
+
+--返回新数组，筛选成员，pred返回false时移除对应元素
+---@generic V
+---@param self  ECList<V>
+---@param pred fun(value:V): boolean
+---@return  ECList<V>
+function ECListMetatable.filter(self, pred)
+    local result = {}
+	for i,v in ipairs(self)do
+		if pred(v) then
+            result[#result+1] = v
+        end
+	end
+	return NewECList(result)
+end
+
+--返回一个新数组，数组中的元素为原始数组元素调用函数处理后的值。
+---@generic V,FuncRetType
+---@param self  ECList<V>
+---@param newValue fun(value:V): FuncRetType
+---@return  ECList<V>
+function ECListMetatable.map(self, newValue)
+    local result = {}
+	for i,v in ipairs(self)do
+		result[i] = newValue(v)
+	end
+	return NewECList(result)
+end
+
+--检测数组所有元素是否都符合指定条件，由函数提供
+---@generic V
+---@param self  ECList<V>
+---@param pred fun(value:V): boolean
+---@return  boolean
+function ECListMetatable.every(self, pred)
+    for i, v in ipairs(self) do
+        if not pred(v) then --如果返回假，则代表不符合那么就返回假
+            return false
+        end
+    end
+	--都为真就返回真
+	return true
+end
+
+--排序成员，修改自身，就像table.sort那样
+---@generic V
+---@param self  ECList<V>
+---@param comp? fun(a:V,b:V): boolean
+---@return  ECList<V> self
+function ECListMetatable.sort(self, comp)
+	if comp then
+    	table.sort(self, comp)
+    else
+    	table.sort(self)
+	end
+	return self
+end
+
+---简单的for遍历
+---@generic V
+---@param self  ECList<V>
+---@param callback fun(i:integer,v:V)
+---@return  ECList<V> self
+function ECListMetatable.forEach(self, callback)
+    for i,v in ipairs(self)do
+        callback(i,v)
+    end
+    return self
+end
 
 ---如果为空则返回v（默认值），不为空返回本身的函数
 ---@param arg any
@@ -138,13 +218,13 @@ function EntityComponentObj(comp_id)
 	end
 
 	---获取组件Tag列表
-	---@return string[]|nil
+	---@return ECList<string>|nil
 	function compobj:GetTagList()
 		local tags = ComponentGetTags(self.comp_id)
 		if tags == nil then
 			return
 		end
-		return split(tags, ",")
+		return NewECList(split(tags, ","))
 	end
 
 	---获取组件的对象的指定值
@@ -184,9 +264,13 @@ function EntityComponentObj(comp_id)
 	---返回列表作为向量
 	---@param array_name string
 	---@param type_stored_in_vector type_stored_in_vector
-	---@return integer[]|number[]|string[]|nil
-	function compobj:GetVector(array_name, type_stored_in_vector)
-		return ComponentGetVector(self.comp_id, array_name, type_stored_in_vector)
+	---@return ECList<integer>|ECList<number>|ECList<string>|nil
+    function compobj:GetVector(array_name, type_stored_in_vector)
+        local result = ComponentGetVector(self.comp_id, array_name, type_stored_in_vector)
+		if result then
+			---@diagnostic disable-next-line: param-type-mismatch
+			return NewECList(result)
+		end
 	end
 
 	---@return table<string, string>|nil
@@ -328,86 +412,6 @@ function EntityComponentObj(comp_id)
 	return compobj
 end
 
----@class ECList<V>: { [integer]: V }
-local ECListMetatable = {}
-
---和标准table的列表行为一致，只是有成员方法
----@generic V
----@param t table<integer,V>
----@return ECList<V>
-function NewECList(t)
-	return setmetatable(t,{__index = ECListMetatable})
-end
-
---返回新数组，筛选成员，pred返回false时移除对应元素
----@generic V
----@param self  ECList<V>
----@param pred fun(value:V): boolean
----@return  ECList<V>
-function ECListMetatable.filter(self, pred)
-    local result = {}
-	for i,v in ipairs(self)do
-		if pred(v) then
-            result[#result+1] = v
-        end
-	end
-	return NewECList(result)
-end
-
---返回一个新数组，数组中的元素为原始数组元素调用函数处理后的值。
----@generic V,FuncRetType
----@param self  ECList<V>
----@param newValue fun(value:V): FuncRetType
----@return  ECList<V>
-function ECListMetatable.map(self, newValue)
-    local result = {}
-	for i,v in ipairs(self)do
-		result[i] = newValue(v)
-	end
-	return NewECList(result)
-end
-
---检测数组所有元素是否都符合指定条件，由函数提供
----@generic V
----@param self  ECList<V>
----@param pred fun(value:V): boolean
----@return  boolean
-function ECListMetatable.every(self, pred)
-    for i, v in ipairs(self) do
-        if not pred(v) then --如果返回假，则代表不符合那么就返回假
-            return false
-        end
-    end
-	--都为真就返回真
-	return true
-end
-
---排序成员，修改自身，就像table.sort那样
----@generic V
----@param self  ECList<V>
----@param comp? fun(a:V,b:V): boolean
----@return  ECList<V> self
-function ECListMetatable.sort(self, comp)
-	if comp then
-    	table.sort(self, comp)
-    else
-    	table.sort(self)
-	end
-	return self
-end
-
----简单的for遍历
----@generic V
----@param self  ECList<V>
----@param callback fun(i:integer,v:V)
----@return  ECList<V> self
-function ECListMetatable.forEach(self, callback)
-    for i,v in ipairs(self)do
-        callback(i,v)
-    end
-    return self
-end
-
 ---@class NoitaEntity
 
 ---以实体id返回一个实体封装
@@ -447,7 +451,7 @@ function EntityObj(entity_id)
 
 			---@type boolean
 			is_alive = nil,
-			---@type string[]
+			---@type ECList<string>|nil
 			tags = nil,
 			---@type string
 			name = nil
@@ -477,11 +481,7 @@ function EntityObj(entity_id)
 			print_error("EntityObjError:Component attributes cannot be overridden")
 		end,
         __index = function(t, k)
-            local result = Entity:GetComp(k)
-			if result then
-				return NewECList(result)
-			end
-			return
+            return Entity:GetComp(k)
 		end
 	})
 	setmetatable(Entity.comp_all, {
@@ -490,11 +490,7 @@ function EntityObj(entity_id)
 			print_error("EntityObjError:Component attributes cannot be overridden")
 		end,
         __index = function(t, k)
-			local result = Entity:GetComp(k)
-			if result then
-				return NewECList(result)
-			end
-			return
+			return Entity:GetComp(k, nil, true)
 		end
     })
     setmetatable(Entity.NewComp, {
@@ -631,13 +627,13 @@ function EntityObj(entity_id)
 	end
 
 	---获取实体Tag列表
-	---@return string[]|nil
+	---@return ECList<string>|nil
 	function Entity:GetTagList()
 		local tags = EntityGetTags(self.entity_id)
 		if tags == nil then
 			return
 		end
-		return split(tags, ",")
+		return NewECList(split(tags, ","))
 	end
 
 	---是否存在tag
@@ -842,18 +838,22 @@ function EntityObj(entity_id)
 
 	---获取所有子实体，或者根据tag筛选
     ---@param tag string? tag == ""
-	---@return integer[]|nil
-	function Entity:GetAllChild(tag)
-		if tag then
-            return EntityGetAllChildren(self.entity_id, tag)
+	---@return ECList<integer>|nil
+    function Entity:GetAllChild(tag)
+		local result
+        if tag then
+            result = EntityGetAllChildren(self.entity_id, tag)
         else
-			return EntityGetAllChildren(self.entity_id)
+            result = EntityGetAllChildren(self.entity_id)
+        end
+		if result then
+	        return NewECList(result)
 		end
 	end
 
 	---获取所有子实体的Obj封装，或者根据tag筛选
     ---@param tag string? tag == ""
-	---@return NoitaEntity[]|nil
+	---@return ECList<NoitaEntity>|nil
     function Entity:GetAllChildObj(tag)
         local list = self:GetAllChild(tag)
 		if list == nil then
@@ -863,7 +863,7 @@ function EntityObj(entity_id)
         for i, v in ipairs(list) do
             result[i] = EntityObj(v)
         end
-		return result
+		return NewECList(result)
 	end
 
 	---筛选出一个有指定名字的子实体
@@ -960,29 +960,33 @@ function EntityObj(entity_id)
 	---@param type_name NoitaComponentNames
 	---@param tag string? tag = ""
 	---@param including_disabled boolean? including_disabled = false
-	---@return integer[]|nil
+	---@return ECList<integer>|nil
 	function Entity:GetCompID(type_name, tag, including_disabled)
 		tag = Default(tag, "")
-		including_disabled = Default(including_disabled, false)
-		if including_disabled then
-			if tag and tag ~= "" then
-				return EntityGetComponentIncludingDisabled(self.entity_id, type_name, tag)
-			else
-				return EntityGetComponentIncludingDisabled(self.entity_id, type_name)
-			end
-		else
-			if tag and tag ~= "" then
-				return EntityGetComponent(self.entity_id, type_name, tag)
-			else
-				return EntityGetComponent(self.entity_id, type_name)
-			end
+        including_disabled = Default(including_disabled, false)
+		local result
+        if including_disabled then
+            if tag and tag ~= "" then
+                result = EntityGetComponentIncludingDisabled(self.entity_id, type_name, tag)
+            else
+                result = EntityGetComponentIncludingDisabled(self.entity_id, type_name)
+            end
+        else
+            if tag and tag ~= "" then
+                result = EntityGetComponent(self.entity_id, type_name, tag)
+            else
+                result = EntityGetComponent(self.entity_id, type_name)
+            end
+        end
+		if result then
+			return NewECList(result)
 		end
 	end
 
 	---获取所有组件id
-	---@return integer[]
+	---@return ECList<integer>
 	function Entity:GetAllCompID()
-		return EntityGetAllComponents(self.entity_id)
+		return NewECList(EntityGetAllComponents(self.entity_id))
 	end
 
 	---获取第一个组件的封装对象
@@ -1002,7 +1006,7 @@ function EntityObj(entity_id)
 	---@param type_name NoitaComponentNames
 	---@param tag string? tag = ""
 	---@param including_disabled boolean? including_disabled = false
-	---@return EntityComponent[]|nil
+	---@return ECList<EntityComponent>|nil
 	function Entity:GetComp(type_name, tag, including_disabled)
 		tag = Default(tag, "")
 		including_disabled = Default(including_disabled, false)
@@ -1016,17 +1020,17 @@ function EntityObj(entity_id)
 		for i, v in ipairs(list) do
 			result[i] = EntityComponentObj(v)
 		end
-		return result
+		return NewECList(result)
 	end
 
 	---获取所有组件id
-	---@return EntityComponent[]
+	---@return ECList<EntityComponent>
 	function Entity:GetAllComp()
 		local result = {}
 		for i, v in ipairs(EntityGetAllComponents(self.entity_id)) do
 			result[i] = EntityComponentObj(v)
 		end
-		return result
+		return NewECList(result)
 	end
 
 	---根据组件标签设置组件启用状态
@@ -1387,7 +1391,7 @@ end
 ---@param pos_y number
 ---@param radius number
 ---@param tag string?
----@return NoitaEntity[]
+---@return ECList<NoitaEntity>
 function EntityObjGetInRadius(pos_x, pos_y, radius, tag)
 	local result = {}
 	local list
@@ -1400,7 +1404,7 @@ function EntityObjGetInRadius(pos_x, pos_y, radius, tag)
 	for i, v in ipairs(list) do
 		result[i] = EntityObj(v)
 	end
-	return result
+	return NewECList(result)
 end
 
 ---@param pos_x number
