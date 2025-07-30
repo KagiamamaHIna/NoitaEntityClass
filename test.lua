@@ -1,5 +1,0 @@
-local entity = EntityObj(1)
-entity.comp.VariableStorageComponent:filter(PredTag("WOW"))
-:forEach(function (i, v)
-    print(v.attr.name)
-end)
