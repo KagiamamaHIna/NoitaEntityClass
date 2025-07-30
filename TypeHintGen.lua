@@ -147,7 +147,7 @@ file:write("---@class NoitaCompTo\n")
 
 ---生成组件索引转组件数组的注解
 for _,v in ipairs(CompList) do
-    local str = string.format("---@field %s %sClass[]\n", v, v)
+    local str = string.format("---@field %s ECList<%sClass>?\n", v, v)
 	file:write(str)
 end
 file:write("\n")

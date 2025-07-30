@@ -1,4 +1,4 @@
----v1.0.13.1
+---v1.0.14
 
 ---如果为空则返回v（默认值），不为空返回本身的函数
 ---@param arg any
@@ -122,6 +122,13 @@ function EntityComponentObj(comp_id)
 	---@return string
 	function compobj:GetName()
 		return ComponentGetTypeName(self.comp_id)
+	end
+
+	---判断是否有tag
+    ---@param tag string
+	---@return boolean
+	function compobj:HasTag(tag)
+		return ComponentHasTag(self.comp_id, tag)
 	end
 
 	---获取组件Tag字符串
@@ -321,6 +328,86 @@ function EntityComponentObj(comp_id)
 	return compobj
 end
 
+---@class ECList<V>: { [integer]: V }
+local ECListMetatable = {}
+
+--和标准table的列表行为一致，只是有成员方法
+---@generic V
+---@param t table<integer,V>
+---@return ECList<V>
+function NewECList(t)
+	return setmetatable(t,{__index = ECListMetatable})
+end
+
+--返回新数组，筛选成员，pred返回false时移除对应元素
+---@generic V
+---@param self  ECList<V>
+---@param pred fun(value:V): boolean
+---@return  ECList<V>
+function ECListMetatable.filter(self, pred)
+    local result = {}
+	for i,v in ipairs(self)do
+		if pred(v) then
+            result[#result+1] = v
+        end
+	end
+	return NewECList(result)
+end
+
+--返回一个新数组，数组中的元素为原始数组元素调用函数处理后的值。
+---@generic V,FuncRetType
+---@param self  ECList<V>
+---@param newValue fun(value:V): FuncRetType
+---@return  ECList<V>
+function ECListMetatable.map(self, newValue)
+    local result = {}
+	for i,v in ipairs(self)do
+		result[i] = newValue(v)
+	end
+	return NewECList(result)
+end
+
+--检测数组所有元素是否都符合指定条件，由函数提供
+---@generic V
+---@param self  ECList<V>
+---@param pred fun(value:V): boolean
+---@return  boolean
+function ECListMetatable.every(self, pred)
+    for i, v in ipairs(self) do
+        if not pred(v) then --如果返回假，则代表不符合那么就返回假
+            return false
+        end
+    end
+	--都为真就返回真
+	return true
+end
+
+--排序成员，修改自身，就像table.sort那样
+---@generic V
+---@param self  ECList<V>
+---@param comp? fun(a:V,b:V): boolean
+---@return  ECList<V> self
+function ECListMetatable.sort(self, comp)
+	if comp then
+    	table.sort(self, comp)
+    else
+    	table.sort(self)
+	end
+	return self
+end
+
+---简单的for遍历
+---@generic V
+---@param self  ECList<V>
+---@param callback fun(i:integer,v:V)
+---@return  ECList<V> self
+function ECListMetatable.forEach(self, callback)
+    for i,v in ipairs(self)do
+        callback(i,v)
+    end
+    return self
+end
+
 ---@class NoitaEntity
 
 ---以实体id返回一个实体封装
@@ -390,7 +477,8 @@ function EntityObj(entity_id)
 			print_error("EntityObjError:Component attributes cannot be overridden")
 		end,
 		__index = function(t, k)
-			return Entity:GetComp(k)
+			---@diagnostic disable-next-line: param-type-mismatch
+			return NewECList(Entity:GetComp(k))
 		end
 	})
 	setmetatable(Entity.comp_all, {
@@ -398,8 +486,9 @@ function EntityObj(entity_id)
 			rawset(t, k, nil)
 			print_error("EntityObjError:Component attributes cannot be overridden")
 		end,
-		__index = function(t, k)
-			return Entity:GetComp(k, nil, true)
+        __index = function(t, k)
+			---@diagnostic disable-next-line: param-type-mismatch
+			return NewECList(Entity:GetComp(k, nil, true))
 		end
     })
     setmetatable(Entity.NewComp, {
@@ -1235,6 +1324,15 @@ function EntityObj(entity_id)
 	end
 
 	return Entity
+end
+
+---返回一个闭包，专门用于接受一个字符串，调用HasTag方法返回布尔的谓词函数<br>可以用作filter方法里的谓词函数，方便tag筛选
+---@param tag string
+---@return fun(obj:any):boolean
+function PredTag(tag)
+	return function (obj)
+		return obj:HasTag(tag)
+	end
 end
 
 ---返回玩家实体封装
