@@ -1,4 +1,4 @@
----v1.0.14
+---v1.0.14.1
 
 ---如果为空则返回v（默认值），不为空返回本身的函数
 ---@param arg any
@@ -476,9 +476,12 @@ function EntityObj(entity_id)
 			rawset(t, k, nil)
 			print_error("EntityObjError:Component attributes cannot be overridden")
 		end,
-		__index = function(t, k)
-			---@diagnostic disable-next-line: param-type-mismatch
-			return NewECList(Entity:GetComp(k))
+        __index = function(t, k)
+            local result = Entity:GetComp(k)
+			if result then
+				return NewECList(result)
+			end
+			return
 		end
 	})
 	setmetatable(Entity.comp_all, {
@@ -487,8 +490,11 @@ function EntityObj(entity_id)
 			print_error("EntityObjError:Component attributes cannot be overridden")
 		end,
         __index = function(t, k)
-			---@diagnostic disable-next-line: param-type-mismatch
-			return NewECList(Entity:GetComp(k, nil, true))
+			local result = Entity:GetComp(k)
+			if result then
+				return NewECList(result)
+			end
+			return
 		end
     })
     setmetatable(Entity.NewComp, {
