@@ -1,4 +1,4 @@
----v1.0.15
+---v1.0.15.1
 
 ---@class ECList<V>: { [integer]: V }
 local ECListMetatable = {}
@@ -1356,6 +1356,12 @@ function PredName(name)
 	return function (obj)
 		return obj:GetName() == name
 	end
+end
+
+---@param tag string
+---@return ECList<integer>
+function EntityObjGetWithTag(tag)
+	return NewECList(EntityGetWithTag(tag))
 end
 
 ---返回玩家实体封装
